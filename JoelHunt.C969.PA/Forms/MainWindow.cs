@@ -28,6 +28,7 @@ namespace JoelHunt.C969.PA.Forms
             this.configs = configs;
             this.repo = repo;
             this.login = login;
+            this.activeUser = user;
             InitializeComponent();
         }
 
@@ -37,6 +38,12 @@ namespace JoelHunt.C969.PA.Forms
         {
             this.repo.Dispose();
             this.login.Close();
+        }
+
+        private void createCustomerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CreateCustomer create =new CreateCustomer(this.repo, this.activeUser);
+            create.Show();
         }
     }
 }

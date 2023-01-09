@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 using JoelHunt.C969.PA.Models;
 using JoelHunt.C969.PA.Services;
 using JoelHunt.C969.PA.Services.ConfigurationService;
-using MySqlConnector;
+using MySql.Data;
+using MySql.Data.MySqlClient;
 
 namespace JoelHunt.C969.PA.Repositories
 {
@@ -34,8 +35,6 @@ namespace JoelHunt.C969.PA.Repositories
         {
             try
             {
-                this.mySqlConnection.Open();
-
                 User user = null;
                 string sql = $"SELECT * FROM user WHERE username = '{username}' AND password = '{password}'";
                 MySqlCommand cmd = new MySqlCommand(sql, mySqlConnection);
@@ -67,16 +66,6 @@ namespace JoelHunt.C969.PA.Repositories
                 Console.WriteLine("User did not exist");
                 return null;
             }
-            finally
-            {
-                if(this.mySqlConnection.State == ConnectionState.Open)
-                {
-                    this.mySqlConnection.Close();
-                }
-            }
         }
-
-        private MySqlDataAdapter dataAdapter;
-        private DataSet dsUser;
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JoelHunt.C969.PA.Models
 {
-    class Country
+    public class Country
     {
         public int CountryId { get; set; }
         public string CountryName { get; set; }

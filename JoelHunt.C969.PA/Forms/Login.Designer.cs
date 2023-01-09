@@ -67,9 +67,9 @@ namespace JoelHunt.C969.PA.Forms
             this.usernameText.AutoSize = true;
             this.usernameText.Location = new System.Drawing.Point(185, 164);
             this.usernameText.Name = "usernameText";
-            this.usernameText.Size = new System.Drawing.Size(67, 13);
+            this.usernameText.Size = new System.Drawing.Size(61, 13);
             this.usernameText.TabIndex = 3;
-            this.usernameText.Text = "Username: $";
+            this.usernameText.Text = "Username: ";
             // 
             // passwordText
             // 

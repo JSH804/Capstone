@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JoelHunt.C969.PA.Models
 {
-    class Address
+    public class Address
     {
         public int AddressId { get; set; }
         public string AddressOne { get; set; }
