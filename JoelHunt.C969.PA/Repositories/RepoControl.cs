@@ -26,17 +26,6 @@ namespace JoelHunt.C969.PA.Repositories
         protected void InitDbConnection(Configurations configs)
         {
             this.mySqlConnection = new MySqlConnection(configs.SqlDBConnectionString);
-            try
-            {
-                Console.WriteLine("Opening connection to the database");
-                this.mySqlConnection.Open();
-                Console.WriteLine("Successfully connected to the database");
-            }
-            catch (Exception)
-            {
-                Console.WriteLine("An error occured trying to connect to the database.");
-            }
-
         }
 
         private void CreateRepos()

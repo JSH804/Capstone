@@ -9,7 +9,7 @@ namespace JoelHunt.C969.PA.Models
     public class Customer
     {
         public int CustomerId { get; set; }
-        public int CustomerName { get; set; }
+        public string CustomerName { get; set; }
         public int AddressId { get; set;}
         public bool Active { get; set; }
         public DateTime CreateDate { get; set; }

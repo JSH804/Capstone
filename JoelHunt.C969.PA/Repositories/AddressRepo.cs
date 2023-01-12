@@ -19,18 +19,19 @@ namespace JoelHunt.C969.PA.Repositories
             this.mySqlConnection = mySqlConnection;
         }
 
-        public int CreateAddress(Address address, int cityId, User user)
+        public int CreateAddress(Address address)
         {
+            mySqlConnection.Open();
             try
             {
                 MySqlCommand cmd = mySqlConnection.CreateCommand();
                 cmd.CommandText = "INSERT INTO address(address,address2,cityId,postalCode,phone,createDate,createBy)VALUES(@country,@address,@addressTwo,@cityId,@postalCode,@phone,@user,@date)";
                 cmd.Parameters.AddWithValue("@address", address.AddressOne);
                 cmd.Parameters.AddWithValue("@addressTwo", address.AddressTwo);
-                cmd.Parameters.AddWithValue("@cityId", cityId);
+                cmd.Parameters.AddWithValue("@cityId", address.CityId);
                 cmd.Parameters.AddWithValue("@postalCode", address.PostalCode);
                 cmd.Parameters.AddWithValue("@phone", address.Phone);
-                cmd.Parameters.AddWithValue("@user", user.UserName);
+                cmd.Parameters.AddWithValue("@user", address.CreatedBy);
                 cmd.Parameters.AddWithValue("@date", DateTime.UtcNow);
 
                 cmd.ExecuteNonQuery();
@@ -41,6 +42,10 @@ namespace JoelHunt.C969.PA.Repositories
             {
                 Console.WriteLine("Error while savng the address");
                 throw;
+            }
+            finally
+            {
+                mySqlConnection.Close();
             }
         }
     }

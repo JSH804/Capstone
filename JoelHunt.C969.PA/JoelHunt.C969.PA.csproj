@@ -96,6 +96,12 @@
     <Compile Include="Forms\Calendar.Designer.cs">
       <DependentUpon>Calendar.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\CreateCountry.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CreateCountry.Designer.cs">
+      <DependentUpon>CreateCountry.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\CreateCustomer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -146,6 +152,9 @@
     <Compile Include="Services\ICountryService.cs" />
     <Compile Include="Services\ICustomerService.cs" />
     <Compile Include="Services\IUserService.cs" />
+    <EmbeddedResource Include="Forms\CreateCountry.resx">
+      <DependentUpon>CreateCountry.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\CreateCustomer.resx">
       <DependentUpon>CreateCustomer.cs</DependentUpon>
     </EmbeddedResource>

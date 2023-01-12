@@ -33,6 +33,7 @@ namespace JoelHunt.C969.PA.Repositories
 
         public User VerifyAndGetUser(string username, string password)
         {
+            mySqlConnection.Open();
             try
             {
                 User user = null;
@@ -65,6 +66,10 @@ namespace JoelHunt.C969.PA.Repositories
             {
                 Console.WriteLine("User did not exist");
                 return null;
+            }
+            finally
+            {
+                mySqlConnection.Close();
             }
         }
     }
