@@ -1,4 +1,5 @@
-﻿using JoelHunt.C969.PA.Models;
+﻿using JoelHunt.C969.PA.Forms.ViewModels;
+using JoelHunt.C969.PA.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,9 @@ namespace JoelHunt.C969.PA.Services
     public interface ICustomerService
     {
         bool CreateCustomer(Customer customer);
+
+        List<CustomerListModel> GetCustomerList();
+
+        CustomerProfileModel GetCustomerProfile(int id);
     }
 }

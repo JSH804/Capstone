@@ -35,8 +35,8 @@ namespace JoelHunt.C969.PA.Forms
             this.findAppointmentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.customersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createCustomerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editCustomerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MainPanel = new System.Windows.Forms.Panel();
+            this.viewCustomersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -75,8 +75,8 @@ namespace JoelHunt.C969.PA.Forms
             // customersToolStripMenuItem
             // 
             this.customersToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.createCustomerToolStripMenuItem,
-            this.editCustomerToolStripMenuItem});
+            this.viewCustomersToolStripMenuItem,
+            this.createCustomerToolStripMenuItem});
             this.customersToolStripMenuItem.Name = "customersToolStripMenuItem";
             this.customersToolStripMenuItem.Size = new System.Drawing.Size(76, 20);
             this.customersToolStripMenuItem.Text = "Customers";
@@ -88,18 +88,19 @@ namespace JoelHunt.C969.PA.Forms
             this.createCustomerToolStripMenuItem.Text = "Create Customer";
             this.createCustomerToolStripMenuItem.Click += new System.EventHandler(this.createCustomerToolStripMenuItem_Click);
             // 
-            // editCustomerToolStripMenuItem
-            // 
-            this.editCustomerToolStripMenuItem.Name = "editCustomerToolStripMenuItem";
-            this.editCustomerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.editCustomerToolStripMenuItem.Text = "Edit Customer";
-            // 
             // MainPanel
             // 
             this.MainPanel.Location = new System.Drawing.Point(0, 27);
             this.MainPanel.Name = "MainPanel";
             this.MainPanel.Size = new System.Drawing.Size(800, 421);
             this.MainPanel.TabIndex = 3;
+            // 
+            // viewCustomersToolStripMenuItem
+            // 
+            this.viewCustomersToolStripMenuItem.Name = "viewCustomersToolStripMenuItem";
+            this.viewCustomersToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.viewCustomersToolStripMenuItem.Text = "View Customers";
+            this.viewCustomersToolStripMenuItem.Click += new System.EventHandler(this.viewCustomersToolStripMenuItem_Click);
             // 
             // MainWindow
             // 
@@ -128,7 +129,7 @@ namespace JoelHunt.C969.PA.Forms
         private System.Windows.Forms.ToolStripMenuItem findAppointmentToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem customersToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem createCustomerToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem editCustomerToolStripMenuItem;
         private System.Windows.Forms.Panel MainPanel;
+        private System.Windows.Forms.ToolStripMenuItem viewCustomersToolStripMenuItem;
     }
 }

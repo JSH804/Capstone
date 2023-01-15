@@ -30,9 +30,6 @@ namespace JoelHunt.C969.PA.Forms
             this.activeUser = activeUser;
             InitializeComponent();
 
-            this.countryComboBox.DataSource = this.countryService.GetCountries();
-            this.countryComboBox.DisplayMember = "country";
-            this.countryComboBox.ValueMember = "countryId";
         }
 
         private void AddControls()
@@ -41,7 +38,6 @@ namespace JoelHunt.C969.PA.Forms
             controlsList.Add(this.addressOneTextBox);
             controlsList.Add(this.cityTextBox);
             controlsList.Add(this.postalCodeTextBox);
-            controlsList.Add(this.countryComboBox);
         }
 
         private ErrorProvider ValidateControls()
@@ -72,7 +68,8 @@ namespace JoelHunt.C969.PA.Forms
             }
             try
             {
-                int cityId = ProcessCity();
+                int countryId = ProcessCountry();
+                int cityId = ProcessCity(countryId);
                 int addressId = ProcessAddress(cityId);
 
                 Customer customer = new Customer
@@ -82,6 +79,8 @@ namespace JoelHunt.C969.PA.Forms
                     Active = this.activeCheckBox.Checked,
                     CreatedBy = this.activeUser.UserName
                 };
+
+                this.customerService.CreateCustomer(customer);
 
                 MessageBox.Show("Customer created successfully");
 
@@ -93,25 +92,27 @@ namespace JoelHunt.C969.PA.Forms
             }
         }
 
-        private int ProcessCity()
+        private int ProcessCountry()
         {
-            int.TryParse(this.countryComboBox.SelectedValue.ToString(), out int countryId);
-            int cityId = this.cityService.CityExist(this.cityTextBox.Text, countryId);
-
-            if (cityId == 0)
+            Country country = new Country()
             {
+                CountryName = this.countryTextBox.Text,
+                CreatedBy = this.activeUser.UserName,
+                LastUpdateBy = this.activeUser.UserName
+            };
+
+            return this.countryService.CreateCountry(country);
+        }
+
+        private int ProcessCity(int id)
+        {
                 City city = new City()
                 {
                     CityName = this.cityTextBox.Text,
-                    CountryId = countryId,
+                    CountryId = id,
                     CreatedBy = this.activeUser.UserName,
                 };
-
-                cityId = this.cityService.CreateCity(city);
-                return cityId;
-            }
-
-            return cityId;
+                return this.cityService.CreateCity(city);
         }
 
         private int ProcessAddress(int cityId)
@@ -119,22 +120,15 @@ namespace JoelHunt.C969.PA.Forms
             Address address = new Address()
             {
                 AddressOne = this.addressOneTextBox.Text,
-                AddressTwo = this.addressTwoTextBox.Text,
                 CityId = cityId,
                 PostalCode = this.postalCodeTextBox.Text,
-                Phone = this.phoneTextBox.Text,
+                Phone = this.phoneLabel.Text,
                 CreatedBy = this.activeUser.UserName,
             };
 
             return this.addressService.CreateAddress(address);
         }
 
-
-        private void createCountryButton_Click(object sender, EventArgs e)
-        {
-            CreateCountry createCountry = new CreateCountry(countryService, activeUser);
-            createCountry.Show();
-        }
 
         private Customer customer;
         private City city;

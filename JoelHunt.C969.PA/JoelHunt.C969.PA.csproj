@@ -96,17 +96,23 @@
     <Compile Include="Forms\Calendar.Designer.cs">
       <DependentUpon>Calendar.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\CreateCountry.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\CreateCountry.Designer.cs">
-      <DependentUpon>CreateCountry.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\CreateCustomer.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\CreateCustomer.Designer.cs">
       <DependentUpon>CreateCustomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Customers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Customers.Designer.cs">
+      <DependentUpon>Customers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\EditCustomer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EditCustomer.Designer.cs">
+      <DependentUpon>EditCustomer.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Login.cs">
       <SubType>Form</SubType>
@@ -120,6 +126,8 @@
     <Compile Include="Forms\MainWindow.Designer.cs">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ViewModels\CustomerListModel.cs" />
+    <Compile Include="Forms\ViewModels\CustomerProfileModel.cs" />
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\Appointment.cs" />
     <Compile Include="Models\City.cs" />
@@ -152,11 +160,14 @@
     <Compile Include="Services\ICountryService.cs" />
     <Compile Include="Services\ICustomerService.cs" />
     <Compile Include="Services\IUserService.cs" />
-    <EmbeddedResource Include="Forms\CreateCountry.resx">
-      <DependentUpon>CreateCountry.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\CreateCustomer.resx">
       <DependentUpon>CreateCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Customers.resx">
+      <DependentUpon>Customers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EditCustomer.resx">
+      <DependentUpon>EditCustomer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>

@@ -11,7 +11,7 @@ namespace JoelHunt.C969.PA.Services
     public interface ICountryService
     {
         int CreateCountry(Country country);
-        int CountryExist(string countryName, out int countryId);
-        DataTable GetCountries();
+        //int CountryExist(string countryName, out int countryId);
+        //DataTable GetCountries();
     }
 }

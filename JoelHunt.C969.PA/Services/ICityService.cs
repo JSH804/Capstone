@@ -10,6 +10,7 @@ namespace JoelHunt.C969.PA.Services
     public interface ICityService
     {
         int CreateCity(City city);
-        int CityExist(string cityName, int countryId);
+        City GetCity(int id);
+        //int CityExist(string cityName, int countryId);
     }
 }

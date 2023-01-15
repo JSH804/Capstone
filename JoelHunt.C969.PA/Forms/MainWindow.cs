@@ -45,5 +45,11 @@ namespace JoelHunt.C969.PA.Forms
             CreateCustomer create =new CreateCustomer(this.repo, this.activeUser);
             create.Show();
         }
+
+        private void viewCustomersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Customers customersForm = new Customers(this.repo, activeUser);
+            customersForm.Show();
+        }
     }
 }

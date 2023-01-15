@@ -25,7 +25,7 @@ namespace JoelHunt.C969.PA.Repositories
             try
             {
                 MySqlCommand cmd = mySqlConnection.CreateCommand();
-                cmd.CommandText = "INSERT INTO country(country,createDate,createBy)VALUES(@country,@user,@date)";
+                cmd.CommandText = "INSERT INTO country(country,createDate,createdBy,lastUpdate,lastUpdateBy)VALUES(@country,@date,@user,@date,@user)";
                 cmd.Parameters.AddWithValue("@country", country.CountryName);
                 cmd.Parameters.AddWithValue("@user", country.CreatedBy);
                 cmd.Parameters.AddWithValue("@date", DateTime.UtcNow);
@@ -46,7 +46,7 @@ namespace JoelHunt.C969.PA.Repositories
 
         }
 
-        public int CountryExist(string countryName, out int countryId)
+/*        public int CountryExist(string countryName, out int countryId)
         {
             mySqlConnection.Open();
             countryId = 0;
@@ -63,7 +63,7 @@ namespace JoelHunt.C969.PA.Repositories
 
             mySqlConnection.Close();
             return countryId;
-        }
+        }*/
 
         public Country GetCountry(int id)
         {
@@ -100,7 +100,7 @@ namespace JoelHunt.C969.PA.Repositories
             }
         }
 
-        public DataTable GetCountries()
+/*        public DataTable GetCountries()
         {
                 mySqlConnection.Open();
                 string sql = $"SELECT * FROM country";
@@ -117,6 +117,6 @@ namespace JoelHunt.C969.PA.Repositories
 
                 mySqlConnection.Close();
                 return dataTable;
-        }
+        }*/
     }
 }

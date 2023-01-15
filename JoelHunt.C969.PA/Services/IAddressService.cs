@@ -10,5 +10,6 @@ namespace JoelHunt.C969.PA.Services
     public interface IAddressService
     {
         int CreateAddress(Address address);
+        Address GetAddress(int id);
     }
 }

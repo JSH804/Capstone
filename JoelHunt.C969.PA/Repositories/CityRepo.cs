@@ -25,11 +25,14 @@ namespace JoelHunt.C969.PA.Repositories
             try
             {
                 MySqlCommand cmd = mySqlConnection.CreateCommand();
-                cmd.CommandText = "INSERT INTO city(city,countryId,createDate,createdBy)VALUES(@city,@countryId,@date,@user)";
+                cmd.CommandText = "INSERT INTO city(city,countryId,createDate,createdBy,lastUpdate,lastUpdateBy)VALUES(@city,@countryId,@date,@user,@date,@user)";
                 cmd.Parameters.AddWithValue("@city", city.CityName);
                 cmd.Parameters.AddWithValue("@countryId", city.CountryId);
                 cmd.Parameters.AddWithValue("@user", city.CreatedBy);
+                cmd.Parameters.AddWithValue("@lastUpdate", DateTime.UtcNow);
                 cmd.Parameters.AddWithValue("@date", DateTime.UtcNow);
+
+                Console.WriteLine(cmd.CommandText);
 
                 cmd.ExecuteNonQuery();
 
@@ -48,7 +51,7 @@ namespace JoelHunt.C969.PA.Repositories
 
         }
 
-        public int CityExist(string cityName, int countryId)
+/*        public int CityExist(string cityName, int countryId)
         {
             mySqlConnection.Open();
             int cityId = 0;
@@ -66,19 +69,17 @@ namespace JoelHunt.C969.PA.Repositories
             mySqlConnection.Close();
 
             return cityId;
-        }
+        }*/
 
         public City GetCity(int id)
         {
-            mySqlConnection.Open();
-            string sql = $"SELECT * FROM city WHERE cityId = '{id}'";
-
-            MySqlCommand cmd = new MySqlCommand(sql, mySqlConnection);
-
-            MySqlDataReader reader = cmd.ExecuteReader();
-
             try
             {
+                mySqlConnection.Open();
+                string sql = $"SELECT * FROM city WHERE cityId = '{id}'";
+
+                MySqlCommand cmd = new MySqlCommand(sql, mySqlConnection);
+                MySqlDataReader reader = cmd.ExecuteReader();
                 City city = new City();
 
                 while (reader.Read())
@@ -94,8 +95,9 @@ namespace JoelHunt.C969.PA.Repositories
 
                 return city;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Console.WriteLine(ex);
                 return null;
             }
             finally
@@ -104,7 +106,7 @@ namespace JoelHunt.C969.PA.Repositories
             }
         }
 
-        public DataTable GetCities()
+/*        public DataTable GetCities()
         {
             mySqlConnection.Open();
             string sql = $"SELECT * FROM city";
@@ -123,6 +125,6 @@ namespace JoelHunt.C969.PA.Repositories
             return dataTable;
 
 
-        }
+        }*/
     }
 }

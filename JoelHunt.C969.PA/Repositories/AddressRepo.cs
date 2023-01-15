@@ -25,9 +25,9 @@ namespace JoelHunt.C969.PA.Repositories
             try
             {
                 MySqlCommand cmd = mySqlConnection.CreateCommand();
-                cmd.CommandText = "INSERT INTO address(address,address2,cityId,postalCode,phone,createDate,createBy)VALUES(@country,@address,@addressTwo,@cityId,@postalCode,@phone,@user,@date)";
+                cmd.CommandText = "INSERT INTO address(address,address2,cityId,postalCode,phone,createDate,createdBy,lastUpdate,lastUpdateBy)VALUES(@address,@addressTwo,@cityId,@postalCode,@phone,@date,@user,@date,@user)";
                 cmd.Parameters.AddWithValue("@address", address.AddressOne);
-                cmd.Parameters.AddWithValue("@addressTwo", address.AddressTwo);
+                cmd.Parameters.AddWithValue("@addressTwo", "");
                 cmd.Parameters.AddWithValue("@cityId", address.CityId);
                 cmd.Parameters.AddWithValue("@postalCode", address.PostalCode);
                 cmd.Parameters.AddWithValue("@phone", address.Phone);
@@ -36,16 +36,51 @@ namespace JoelHunt.C969.PA.Repositories
 
                 cmd.ExecuteNonQuery();
 
-                return Convert.ToInt32(cmd.LastInsertedId);
+                var lastId = cmd.LastInsertedId;
+
+                return Convert.ToInt32(lastId);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 Console.WriteLine("Error while savng the address");
+                Console.WriteLine(ex);
                 throw;
             }
             finally
             {
                 mySqlConnection.Close();
+            }
+        }
+
+        public Address GetAddress(int id)
+        {
+            this.mySqlConnection.Open();
+            string sql = $"SELECT * FROM address WHERE addressId = '{id}'";
+
+            MySqlCommand cmd = new MySqlCommand(sql, mySqlConnection);
+
+            try
+            {
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                Address address = new Address();
+
+                while (reader.Read())
+                {
+                    address.AddressId = (int)reader["addressId"];
+                    address.AddressOne = (string)reader["addressOne"];
+                    address.CityId = (int)reader["cityId"];
+                }
+
+                return address;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            finally
+            {
+                this.mySqlConnection.Close();
             }
         }
     }
