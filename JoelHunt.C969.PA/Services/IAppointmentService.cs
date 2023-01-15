@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace JoelHunt.C969.PA.Services
 {
-    class IAppointmentService
+    public class IAppointmentService
     {
+     
     }
 }

@@ -1,4 +1,5 @@
-﻿using JoelHunt.C969.PA.Models;
+﻿using JoelHunt.C969.PA.Forms.ViewModels;
+using JoelHunt.C969.PA.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,5 +13,7 @@ namespace JoelHunt.C969.PA.Services
         User VerifyAndGetUser(string username, string password);
 
         IEnumerable<User> GetUsers();
+
+        List<UserDropDown> GetUserDropDown();
     }
 }

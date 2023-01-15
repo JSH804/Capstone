@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using JoelHunt.C969.PA.Services;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace JoelHunt.C969.PA.Repositories
 {
-    public class AppointmentRepo
+    public class AppointmentRepo : IAppointmentService
     {
         private readonly MySqlConnection mySqlConnection;
 

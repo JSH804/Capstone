@@ -90,11 +90,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Forms\Calendar.cs">
+    <Compile Include="Forms\AddAppointment.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Calendar.Designer.cs">
-      <DependentUpon>Calendar.cs</DependentUpon>
+    <Compile Include="Forms\AddAppointment.Designer.cs">
+      <DependentUpon>AddAppointment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Appointments.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Appointments.Designer.cs">
+      <DependentUpon>Appointments.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\CreateCustomer.cs">
       <SubType>Form</SubType>
@@ -126,8 +132,11 @@
     <Compile Include="Forms\MainWindow.Designer.cs">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ViewModels\AppointmentAddModel.cs" />
+    <Compile Include="Forms\ViewModels\CustomerDropDown.cs" />
     <Compile Include="Forms\ViewModels\CustomerListModel.cs" />
     <Compile Include="Forms\ViewModels\CustomerProfileModel.cs" />
+    <Compile Include="Forms\ViewModels\UserDropDown.cs" />
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\Appointment.cs" />
     <Compile Include="Models\City.cs" />
@@ -160,6 +169,12 @@
     <Compile Include="Services\ICountryService.cs" />
     <Compile Include="Services\ICustomerService.cs" />
     <Compile Include="Services\IUserService.cs" />
+    <EmbeddedResource Include="Forms\AddAppointment.resx">
+      <DependentUpon>AddAppointment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Appointments.resx">
+      <DependentUpon>Appointments.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\CreateCustomer.resx">
       <DependentUpon>CreateCustomer.cs</DependentUpon>
     </EmbeddedResource>

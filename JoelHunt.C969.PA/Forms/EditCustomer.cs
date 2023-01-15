@@ -41,7 +41,7 @@ namespace JoelHunt.C969.PA.Forms
             this.postalCodeTextBox.Text = this.customer.PostalCode;
             this.countryTextBox.Text = this.customer.CountryName;
             this.phoneTextBox.Text = this.customer.Phone;
-            this.activeCheckBox.Checked = this.customer.Active;
+
         }
 
         private void saveButton_Click(object sender, EventArgs e)
@@ -52,9 +52,18 @@ namespace JoelHunt.C969.PA.Forms
             this.customer.PostalCode = this.postalCodeTextBox.Text;
             this.customer.CountryName = this.countryTextBox.Text;
             this.customer.Phone = this.phoneTextBox.Text;
-            this.customer.Active = this.activeCheckBox.Checked;
 
+            bool isSaveSuccessful = this.customerService.UpdateCustomer(this.customer);
 
+            if (isSaveSuccessful)
+            {
+                MessageBox.Show("Customer updated successfully");
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Error while updating the customer!");
+            }
         }
     }
 }

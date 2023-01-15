@@ -63,14 +63,16 @@ namespace JoelHunt.C969.PA.Forms
             // createAppointmentToolStripMenuItem
             // 
             this.createAppointmentToolStripMenuItem.Name = "createAppointmentToolStripMenuItem";
-            this.createAppointmentToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
-            this.createAppointmentToolStripMenuItem.Text = "Create Appointment";
+            this.createAppointmentToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.createAppointmentToolStripMenuItem.Text = "View Appointments";
+            this.createAppointmentToolStripMenuItem.Click += new System.EventHandler(this.createAppointmentToolStripMenuItem_Click);
             // 
             // findAppointmentToolStripMenuItem
             // 
             this.findAppointmentToolStripMenuItem.Name = "findAppointmentToolStripMenuItem";
-            this.findAppointmentToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
-            this.findAppointmentToolStripMenuItem.Text = "Edit Appointment";
+            this.findAppointmentToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.findAppointmentToolStripMenuItem.Text = "Add Appointment";
+            this.findAppointmentToolStripMenuItem.Click += new System.EventHandler(this.findAppointmentToolStripMenuItem_Click);
             // 
             // customersToolStripMenuItem
             // 

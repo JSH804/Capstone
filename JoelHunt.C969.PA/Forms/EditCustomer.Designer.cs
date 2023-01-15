@@ -41,7 +41,6 @@ namespace JoelHunt.C969.PA.Forms
             this.cityLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.nameLabel = new System.Windows.Forms.Label();
-            this.activeCheckBox = new System.Windows.Forms.CheckBox();
             this.addressOneTextBox = new System.Windows.Forms.TextBox();
             this.customerNameTextBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
@@ -149,16 +148,6 @@ namespace JoelHunt.C969.PA.Forms
             this.nameLabel.TabIndex = 28;
             this.nameLabel.Text = "Customer Name: ";
             // 
-            // activeCheckBox
-            // 
-            this.activeCheckBox.AutoSize = true;
-            this.activeCheckBox.Location = new System.Drawing.Point(76, 384);
-            this.activeCheckBox.Name = "activeCheckBox";
-            this.activeCheckBox.Size = new System.Drawing.Size(56, 17);
-            this.activeCheckBox.TabIndex = 27;
-            this.activeCheckBox.Text = "Active";
-            this.activeCheckBox.UseVisualStyleBackColor = true;
-            // 
             // addressOneTextBox
             // 
             this.addressOneTextBox.Location = new System.Drawing.Point(77, 157);
@@ -190,7 +179,6 @@ namespace JoelHunt.C969.PA.Forms
             this.Controls.Add(this.cityLabel);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.nameLabel);
-            this.Controls.Add(this.activeCheckBox);
             this.Controls.Add(this.addressOneTextBox);
             this.Controls.Add(this.customerNameTextBox);
             this.Name = "EditCustomer";
@@ -214,7 +202,6 @@ namespace JoelHunt.C969.PA.Forms
         private System.Windows.Forms.Label cityLabel;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label nameLabel;
-        private System.Windows.Forms.CheckBox activeCheckBox;
         private System.Windows.Forms.TextBox addressOneTextBox;
         private System.Windows.Forms.TextBox customerNameTextBox;
     }

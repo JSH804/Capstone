@@ -54,24 +54,35 @@ namespace JoelHunt.C969.PA.Repositories
             try
             {
                 mySqlConnection.Open();
-                string sql = $"SELECT customerId,customerName,createDate FROM customer";
+                StringBuilder sql = new StringBuilder();
 
-                MySqlCommand cmd = new MySqlCommand(sql, mySqlConnection);
+                sql.Append("SELECT customer.customerId, customer.customerName, ");
+                sql.Append("address.phone, ");
+                sql.Append("city.city, ");
+                sql.Append("country.country ");
+                sql.Append("from customer ");
+                sql.Append("INNER JOIN address ON address.addressId = customer.addressId ");
+                sql.Append("INNER JOIN city ON city.cityId = address.cityId ");
+                sql.Append("INNER JOIN country ON country.countryId = city.countryId ");
 
-                MySqlDataReader dataReader = cmd.ExecuteReader();
+                MySqlCommand cmd = new MySqlCommand(sql.ToString(), mySqlConnection);
 
-                if (dataReader.HasRows)
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.HasRows)
                 {
-                    while (dataReader.Read())
+                    while (reader.Read())
                     {
                         customers.Add(new CustomerListModel
                         {
-                            Id = (int)dataReader["customerId"],
-                            Name = (string)dataReader["customerName"],
-                            CreateDate = (DateTime)dataReader["createDate"]
+                            CustomerId = (int)reader["customerId"],
+                            CustomerName = (string)reader["customerName"],
+                            Phone = (string)reader["phone"],
+                            CityName = (string)reader["city"],
+                            CountryName = (string)reader["country"]
                         });
                     }
-                }
+                } 
             }
             catch (Exception ex)
             {
@@ -84,6 +95,42 @@ namespace JoelHunt.C969.PA.Repositories
             }
 
             return customers;
+        }
+
+        public List<CustomerDropDown> GetCustomerDropDown()
+        {
+            try
+            {
+                mySqlConnection.Open();
+
+                string sql = "SELECT customerId, customerName FROM customer";
+
+                MySqlCommand cmd = new MySqlCommand(sql, mySqlConnection);
+
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                List<CustomerDropDown> customers = new List<CustomerDropDown>();
+
+                while (reader.Read())
+                {
+                    customers.Add(new CustomerDropDown
+                    {
+                        Id = (int)reader["customerId"],
+                        Name = (string)reader["customerName"]
+                    });
+                }
+
+                return customers;
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Error getting customer drop down.");
+                throw;
+            }
+            finally
+            {
+                mySqlConnection.Close();
+            }
         }
 
         public CustomerProfileModel GetCustomerProfile(int id)
@@ -100,7 +147,7 @@ namespace JoelHunt.C969.PA.Repositories
                 sql.Append("INNER JOIN address ON address.addressId = customer.addressId ");
                 sql.Append("INNER JOIN city ON city.cityId = address.cityId ");
                 sql.Append("INNER JOIN country ON country.countryId = city.countryId ");
-                sql.Append($"where customer.customerId = {id}");
+
 
 
                 mySqlConnection.Open();
@@ -121,7 +168,7 @@ namespace JoelHunt.C969.PA.Repositories
                     customer.Phone = (string)reader["phone"];
                     customer.CityId = (int)reader["cityId"];
                     customer.CityName = (string)reader["city"];
-                    customer.CountryId = (int)reader["cityId"];
+                    customer.CountryId = (int)reader["countryId"];
                     customer.CountryName = (string)reader["country"];
                 }
 
@@ -131,6 +178,73 @@ namespace JoelHunt.C969.PA.Repositories
             {
                 Console.WriteLine($"Error getting the customer profile {ex}");
                 throw;
+            }
+            finally
+            {
+                mySqlConnection.Close();
+            }
+        }
+
+        public bool UpdateCustomer(CustomerProfileModel customer)
+        {
+            try
+            {
+                mySqlConnection.Open();
+
+                string sql = $"UPDATE customer SET customerName = '{customer.CustomerName}' WHERE customerId = {customer.CustomerId};";
+
+                MySqlCommand cmd = new MySqlCommand(sql, mySqlConnection);
+
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                }
+
+                reader.Close();
+
+                sql = $"UPDATE address SET address = '{customer.AddressOne}', postalCode = '{customer.PostalCode}', phone = '{customer.Phone}' WHERE addressId = {customer.AddressId};";
+
+                cmd = new MySqlCommand(sql, mySqlConnection);
+
+                reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                }
+
+                reader.Close();
+
+                sql = $"UPDATE city SET city = '{customer.CityName}' WHERE cityId = {customer.CityId};";
+
+                cmd = new MySqlCommand(sql, mySqlConnection);
+
+                reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                }
+
+                reader.Close();
+
+                sql = $"UPDATE country SET country = '{customer.CountryName}' WHERE countryId = {customer.CountryId};";
+
+                cmd = new MySqlCommand(sql, mySqlConnection);
+
+                reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                }
+
+                reader.Close();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error updateint the customer: {ex}");
+                return false;
             }
             finally
             {

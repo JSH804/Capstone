@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using JoelHunt.C969.PA.Forms.ViewModels;
 using JoelHunt.C969.PA.Models;
 using JoelHunt.C969.PA.Services;
 using JoelHunt.C969.PA.Services.ConfigurationService;
@@ -66,6 +67,42 @@ namespace JoelHunt.C969.PA.Repositories
             {
                 Console.WriteLine("User did not exist");
                 return null;
+            }
+            finally
+            {
+                mySqlConnection.Close();
+            }
+        }
+
+        public List<UserDropDown> GetUserDropDown()
+        {
+            try
+            {
+                mySqlConnection.Open();
+
+                string sql = "SELECT userId, userName FROM user";
+
+                MySqlCommand cmd = new MySqlCommand(sql, mySqlConnection);
+
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                List<UserDropDown> customers = new List<UserDropDown>();
+
+                while (reader.Read())
+                {
+                    customers.Add(new UserDropDown
+                    {
+                        Id = (int)reader["userId"],
+                        Name = (string)reader["userName"]
+                    });
+                }
+
+                return customers;
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Error getting user drop down.");
+                throw;
             }
             finally
             {

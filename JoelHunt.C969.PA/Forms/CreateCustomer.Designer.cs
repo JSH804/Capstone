@@ -31,7 +31,6 @@ namespace JoelHunt.C969.PA.Forms
         {
             this.customerNameTextBox = new System.Windows.Forms.TextBox();
             this.addressOneTextBox = new System.Windows.Forms.TextBox();
-            this.activeCheckBox = new System.Windows.Forms.CheckBox();
             this.nameLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.cityLabel = new System.Windows.Forms.Label();
@@ -59,16 +58,6 @@ namespace JoelHunt.C969.PA.Forms
             this.addressOneTextBox.Name = "addressOneTextBox";
             this.addressOneTextBox.Size = new System.Drawing.Size(203, 20);
             this.addressOneTextBox.TabIndex = 1;
-            // 
-            // activeCheckBox
-            // 
-            this.activeCheckBox.AutoSize = true;
-            this.activeCheckBox.Location = new System.Drawing.Point(67, 392);
-            this.activeCheckBox.Name = "activeCheckBox";
-            this.activeCheckBox.Size = new System.Drawing.Size(56, 17);
-            this.activeCheckBox.TabIndex = 3;
-            this.activeCheckBox.Text = "Active";
-            this.activeCheckBox.UseVisualStyleBackColor = true;
             // 
             // nameLabel
             // 
@@ -190,7 +179,6 @@ namespace JoelHunt.C969.PA.Forms
             this.Controls.Add(this.cityLabel);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.nameLabel);
-            this.Controls.Add(this.activeCheckBox);
             this.Controls.Add(this.addressOneTextBox);
             this.Controls.Add(this.customerNameTextBox);
             this.Name = "CreateCustomer";
@@ -204,7 +192,6 @@ namespace JoelHunt.C969.PA.Forms
 
         private System.Windows.Forms.TextBox customerNameTextBox;
         private System.Windows.Forms.TextBox addressOneTextBox;
-        private System.Windows.Forms.CheckBox activeCheckBox;
         private System.Windows.Forms.Label nameLabel;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label cityLabel;

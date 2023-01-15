@@ -51,5 +51,17 @@ namespace JoelHunt.C969.PA.Forms
             Customers customersForm = new Customers(this.repo, activeUser);
             customersForm.Show();
         }
+
+        private void createAppointmentToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Appointments appointments = new Appointments(this.repo, this.activeUser);
+            appointments.Show();
+        }
+
+        private void findAppointmentToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddAppointment addAppointment = new AddAppointment(this.repo, this.activeUser);
+            addAppointment.Show();
+        }
     }
 }

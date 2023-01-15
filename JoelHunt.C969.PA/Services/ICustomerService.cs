@@ -14,6 +14,10 @@ namespace JoelHunt.C969.PA.Services
 
         List<CustomerListModel> GetCustomerList();
 
+        List<CustomerDropDown> GetCustomerDropDown();
+
         CustomerProfileModel GetCustomerProfile(int id);
+
+        bool UpdateCustomer(CustomerProfileModel customer);
     }
 }

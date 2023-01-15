@@ -42,10 +42,9 @@ namespace JoelHunt.C969.PA.Forms
             this.customerDataGrid.DataSource = this.customers;
             this.customerDataGrid.MultiSelect = false;
             this.customerDataGrid.ReadOnly = true;
+            this.customerDataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             this.customerDataGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         }
-
-        private List<CustomerListModel> customers;
 
         private void addCustomerButton_Click(object sender, EventArgs e)
         {
@@ -56,10 +55,12 @@ namespace JoelHunt.C969.PA.Forms
         private void editCustomerButton_Click(object sender, EventArgs e)
         {
             DataGridViewRow row = this.customerDataGrid.SelectedRows[0];
-            int customerId = Convert.ToInt32(row.Cells["Id"].Value);
+            int customerId = Convert.ToInt32(row.Cells["customerId"].Value);
 
             EditCustomer editCustomerForm = new EditCustomer(this.repo, this.activeUser, customerId);
             editCustomerForm.Show();
         }
+
+        private List<CustomerListModel> customers;
     }
 }

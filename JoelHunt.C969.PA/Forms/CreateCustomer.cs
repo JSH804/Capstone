@@ -76,7 +76,6 @@ namespace JoelHunt.C969.PA.Forms
                 {
                     CustomerName = this.customerNameTextBox.Text,
                     AddressId = addressId,
-                    Active = this.activeCheckBox.Checked,
                     CreatedBy = this.activeUser.UserName
                 };
 
