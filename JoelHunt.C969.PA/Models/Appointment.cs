@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JoelHunt.C969.PA.Models
 {
-    class Appointment
+    public class Appointment
     {
         public int AppointmentId { get; set; }
         public int CustomerId { get; set; }

@@ -29,33 +29,26 @@ namespace JoelHunt.C969.PA.Forms
         /// </summary>
         private void InitializeComponent()
         {
-            this.appointmentListView = new System.Windows.Forms.ListView();
             this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
             this.calendarUpdateButton = new System.Windows.Forms.Button();
             this.weekRadio = new System.Windows.Forms.RadioButton();
             this.yearRadio = new System.Windows.Forms.RadioButton();
             this.allRadio = new System.Windows.Forms.RadioButton();
             this.addAppButton = new System.Windows.Forms.Button();
+            this.appointmentDataGrid = new System.Windows.Forms.DataGridView();
+            this.headerLabel = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.appointmentDataGrid)).BeginInit();
             this.SuspendLayout();
-            // 
-            // appointmentListView
-            // 
-            this.appointmentListView.HideSelection = false;
-            this.appointmentListView.Location = new System.Drawing.Point(45, 70);
-            this.appointmentListView.Name = "appointmentListView";
-            this.appointmentListView.Size = new System.Drawing.Size(440, 325);
-            this.appointmentListView.TabIndex = 0;
-            this.appointmentListView.UseCompatibleStateImageBehavior = false;
             // 
             // monthCalendar1
             // 
-            this.monthCalendar1.Location = new System.Drawing.Point(568, 164);
+            this.monthCalendar1.Location = new System.Drawing.Point(793, 194);
             this.monthCalendar1.Name = "monthCalendar1";
             this.monthCalendar1.TabIndex = 1;
             // 
             // calendarUpdateButton
             // 
-            this.calendarUpdateButton.Location = new System.Drawing.Point(697, 351);
+            this.calendarUpdateButton.Location = new System.Drawing.Point(922, 381);
             this.calendarUpdateButton.Name = "calendarUpdateButton";
             this.calendarUpdateButton.Size = new System.Drawing.Size(98, 23);
             this.calendarUpdateButton.TabIndex = 2;
@@ -65,7 +58,7 @@ namespace JoelHunt.C969.PA.Forms
             // weekRadio
             // 
             this.weekRadio.AutoSize = true;
-            this.weekRadio.Location = new System.Drawing.Point(653, 125);
+            this.weekRadio.Location = new System.Drawing.Point(878, 155);
             this.weekRadio.Name = "weekRadio";
             this.weekRadio.Size = new System.Drawing.Size(54, 17);
             this.weekRadio.TabIndex = 4;
@@ -76,7 +69,7 @@ namespace JoelHunt.C969.PA.Forms
             // yearRadio
             // 
             this.yearRadio.AutoSize = true;
-            this.yearRadio.Location = new System.Drawing.Point(748, 125);
+            this.yearRadio.Location = new System.Drawing.Point(973, 155);
             this.yearRadio.Name = "yearRadio";
             this.yearRadio.Size = new System.Drawing.Size(47, 17);
             this.yearRadio.TabIndex = 5;
@@ -87,7 +80,7 @@ namespace JoelHunt.C969.PA.Forms
             // allRadio
             // 
             this.allRadio.AutoSize = true;
-            this.allRadio.Location = new System.Drawing.Point(568, 125);
+            this.allRadio.Location = new System.Drawing.Point(793, 155);
             this.allRadio.Name = "allRadio";
             this.allRadio.Size = new System.Drawing.Size(36, 17);
             this.allRadio.TabIndex = 6;
@@ -97,7 +90,7 @@ namespace JoelHunt.C969.PA.Forms
             // 
             // addAppButton
             // 
-            this.addAppButton.Location = new System.Drawing.Point(376, 425);
+            this.addAppButton.Location = new System.Drawing.Point(647, 441);
             this.addAppButton.Name = "addAppButton";
             this.addAppButton.Size = new System.Drawing.Size(109, 23);
             this.addAppButton.TabIndex = 7;
@@ -105,33 +98,58 @@ namespace JoelHunt.C969.PA.Forms
             this.addAppButton.UseVisualStyleBackColor = true;
             this.addAppButton.Click += new System.EventHandler(this.addAppButton_Click);
             // 
+            // appointmentDataGrid
+            // 
+            this.appointmentDataGrid.AllowUserToAddRows = false;
+            this.appointmentDataGrid.AllowUserToDeleteRows = false;
+            this.appointmentDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.appointmentDataGrid.Location = new System.Drawing.Point(34, 93);
+            this.appointmentDataGrid.MultiSelect = false;
+            this.appointmentDataGrid.Name = "appointmentDataGrid";
+            this.appointmentDataGrid.ReadOnly = true;
+            this.appointmentDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.appointmentDataGrid.Size = new System.Drawing.Size(722, 324);
+            this.appointmentDataGrid.TabIndex = 8;
+            // 
+            // headerLabel
+            // 
+            this.headerLabel.AutoSize = true;
+            this.headerLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.headerLabel.Location = new System.Drawing.Point(29, 25);
+            this.headerLabel.Name = "headerLabel";
+            this.headerLabel.Size = new System.Drawing.Size(160, 29);
+            this.headerLabel.TabIndex = 9;
+            this.headerLabel.Text = "Appointments";
+            // 
             // Appointments
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(848, 555);
+            this.ClientSize = new System.Drawing.Size(1038, 562);
+            this.Controls.Add(this.headerLabel);
+            this.Controls.Add(this.appointmentDataGrid);
             this.Controls.Add(this.addAppButton);
             this.Controls.Add(this.allRadio);
             this.Controls.Add(this.yearRadio);
             this.Controls.Add(this.weekRadio);
             this.Controls.Add(this.calendarUpdateButton);
             this.Controls.Add(this.monthCalendar1);
-            this.Controls.Add(this.appointmentListView);
             this.Name = "Appointments";
             this.Text = "Appointments";
+            ((System.ComponentModel.ISupportInitialize)(this.appointmentDataGrid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.ListView appointmentListView;
         private System.Windows.Forms.MonthCalendar monthCalendar1;
         private System.Windows.Forms.Button calendarUpdateButton;
         private System.Windows.Forms.RadioButton weekRadio;
         private System.Windows.Forms.RadioButton yearRadio;
         private System.Windows.Forms.RadioButton allRadio;
         private System.Windows.Forms.Button addAppButton;
+        private System.Windows.Forms.DataGridView appointmentDataGrid;
+        private System.Windows.Forms.Label headerLabel;
     }
 }

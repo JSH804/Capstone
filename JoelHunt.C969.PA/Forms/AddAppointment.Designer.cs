@@ -34,7 +34,7 @@ namespace JoelHunt.C969.PA.Forms
             this.userComboBox = new System.Windows.Forms.ComboBox();
             this.customerLabel = new System.Windows.Forms.Label();
             this.userLabel = new System.Windows.Forms.Label();
-            this.appTextBox = new System.Windows.Forms.TextBox();
+            this.appTypeTextBox = new System.Windows.Forms.TextBox();
             this.startDatePicker = new System.Windows.Forms.DateTimePicker();
             this.endDatePicker = new System.Windows.Forms.DateTimePicker();
             this.typeLabel = new System.Windows.Forms.Label();
@@ -87,12 +87,12 @@ namespace JoelHunt.C969.PA.Forms
             this.userLabel.TabIndex = 4;
             this.userLabel.Text = "User:";
             // 
-            // appTextBox
+            // appTypeTextBox
             // 
-            this.appTextBox.Location = new System.Drawing.Point(98, 221);
-            this.appTextBox.Name = "appTextBox";
-            this.appTextBox.Size = new System.Drawing.Size(206, 20);
-            this.appTextBox.TabIndex = 5;
+            this.appTypeTextBox.Location = new System.Drawing.Point(98, 221);
+            this.appTypeTextBox.Name = "appTypeTextBox";
+            this.appTypeTextBox.Size = new System.Drawing.Size(206, 20);
+            this.appTypeTextBox.TabIndex = 5;
             // 
             // startDatePicker
             // 
@@ -143,6 +143,7 @@ namespace JoelHunt.C969.PA.Forms
             this.addButton.TabIndex = 11;
             this.addButton.Text = "Add";
             this.addButton.UseVisualStyleBackColor = true;
+            this.addButton.Click += new System.EventHandler(this.addButton_Click);
             // 
             // AddAppointment
             // 
@@ -155,7 +156,7 @@ namespace JoelHunt.C969.PA.Forms
             this.Controls.Add(this.typeLabel);
             this.Controls.Add(this.endDatePicker);
             this.Controls.Add(this.startDatePicker);
-            this.Controls.Add(this.appTextBox);
+            this.Controls.Add(this.appTypeTextBox);
             this.Controls.Add(this.userLabel);
             this.Controls.Add(this.customerLabel);
             this.Controls.Add(this.userComboBox);
@@ -175,7 +176,7 @@ namespace JoelHunt.C969.PA.Forms
         private System.Windows.Forms.ComboBox userComboBox;
         private System.Windows.Forms.Label customerLabel;
         private System.Windows.Forms.Label userLabel;
-        private System.Windows.Forms.TextBox appTextBox;
+        private System.Windows.Forms.TextBox appTypeTextBox;
         private System.Windows.Forms.DateTimePicker startDatePicker;
         private System.Windows.Forms.DateTimePicker endDatePicker;
         private System.Windows.Forms.Label typeLabel;

@@ -25,6 +25,14 @@ namespace JoelHunt.C969.PA.Forms
             this.appointmentService = repo.Appointments;
             this.activeUser = activeUser;
             InitializeComponent();
+            GetListOfAppointmentsOnInit();
+        }
+
+        private void GetListOfAppointmentsOnInit()
+        {
+            this.appointmentDataGrid.DataSource = this.appointmentService.GetAppointmentListModels();
+            this.appointmentDataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+         
         }
 
         private void addAppButton_Click(object sender, EventArgs e)

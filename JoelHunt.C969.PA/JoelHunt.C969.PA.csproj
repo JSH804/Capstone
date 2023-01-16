@@ -133,6 +133,7 @@
       <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\ViewModels\AppointmentAddModel.cs" />
+    <Compile Include="Forms\ViewModels\AppointmentListModel.cs" />
     <Compile Include="Forms\ViewModels\CustomerDropDown.cs" />
     <Compile Include="Forms\ViewModels\CustomerListModel.cs" />
     <Compile Include="Forms\ViewModels\CustomerProfileModel.cs" />
@@ -152,16 +153,6 @@
     <Compile Include="Repositories\CustomerRepo.cs" />
     <Compile Include="Repositories\RepoControl.cs" />
     <Compile Include="Repositories\UserRepo.cs" />
-    <Compile Include="Resources\en.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>en.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\vi.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>vi.resx</DependentUpon>
-    </Compile>
     <Compile Include="Services\ConfigurationService\Configurations.cs" />
     <Compile Include="Services\IAddressService.cs" />
     <Compile Include="Services\IAppointmentService.cs" />
@@ -199,14 +190,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Resources\en.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>en.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\vi.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>vi.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

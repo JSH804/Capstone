@@ -28,6 +28,14 @@ namespace JoelHunt.C969.PA.Forms
             this.activeUser = activeUser;
             InitializeComponent();
 
+            InitializeForm();
+        }
+
+        private void InitializeForm()
+        {
+            this.startDatePicker.Format = DateTimePickerFormat.Time;
+            this.endDatePicker.Format = DateTimePickerFormat.Time;
+
             GetDropDownList();
         }
 
@@ -50,6 +58,35 @@ namespace JoelHunt.C969.PA.Forms
 
                 MessageBox.Show("There was an error loading the page.");
             }
+        }
+
+        private void addButton_Click(object sender, EventArgs e)
+        {
+            int.TryParse(this.customerComboBox.SelectedValue.ToString(), out int customerId);
+            int.TryParse(this.userComboBox.SelectedValue.ToString(), out int userId);
+
+            Appointment appointment = new Appointment()
+            {
+                CustomerId = customerId,
+                UserId = userId,
+                Type = this.appTypeTextBox.Text,
+                Start = this.startDatePicker.Value,
+                Stop = this.endDatePicker.Value,
+                CreatedBy = this.activeUser.UserName,
+                LastUpdateBy = this.activeUser.UserName
+            };
+
+            bool isSaveSuccess = this.appointmentService.AddAppointment(appointment);
+
+            if (isSaveSuccess)
+            {
+                MessageBox.Show("Appointment saved successfully.");
+            }
+            else
+            {
+                MessageBox.Show("Error while saving the appointment.");
+            }
+
         }
     }
 }
