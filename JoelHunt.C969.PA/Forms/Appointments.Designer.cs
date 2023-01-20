@@ -29,7 +29,7 @@ namespace JoelHunt.C969.PA.Forms
         /// </summary>
         private void InitializeComponent()
         {
-            this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
+            this.searchCalender = new System.Windows.Forms.MonthCalendar();
             this.calendarUpdateButton = new System.Windows.Forms.Button();
             this.weekRadio = new System.Windows.Forms.RadioButton();
             this.yearRadio = new System.Windows.Forms.RadioButton();
@@ -40,11 +40,12 @@ namespace JoelHunt.C969.PA.Forms
             ((System.ComponentModel.ISupportInitialize)(this.appointmentDataGrid)).BeginInit();
             this.SuspendLayout();
             // 
-            // monthCalendar1
+            // searchCalender
             // 
-            this.monthCalendar1.Location = new System.Drawing.Point(793, 194);
-            this.monthCalendar1.Name = "monthCalendar1";
-            this.monthCalendar1.TabIndex = 1;
+            this.searchCalender.Location = new System.Drawing.Point(793, 194);
+            this.searchCalender.Name = "searchCalender";
+            this.searchCalender.TabIndex = 1;
+            this.searchCalender.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.searchCalender_DateChanged);
             // 
             // calendarUpdateButton
             // 
@@ -54,6 +55,7 @@ namespace JoelHunt.C969.PA.Forms
             this.calendarUpdateButton.TabIndex = 2;
             this.calendarUpdateButton.Text = "Update Calendar";
             this.calendarUpdateButton.UseVisualStyleBackColor = true;
+            this.calendarUpdateButton.Click += new System.EventHandler(this.calendarUpdateButton_Click);
             // 
             // weekRadio
             // 
@@ -133,7 +135,7 @@ namespace JoelHunt.C969.PA.Forms
             this.Controls.Add(this.yearRadio);
             this.Controls.Add(this.weekRadio);
             this.Controls.Add(this.calendarUpdateButton);
-            this.Controls.Add(this.monthCalendar1);
+            this.Controls.Add(this.searchCalender);
             this.Name = "Appointments";
             this.Text = "Appointments";
             ((System.ComponentModel.ISupportInitialize)(this.appointmentDataGrid)).EndInit();
@@ -143,7 +145,7 @@ namespace JoelHunt.C969.PA.Forms
         }
 
         #endregion
-        private System.Windows.Forms.MonthCalendar monthCalendar1;
+        private System.Windows.Forms.MonthCalendar searchCalender;
         private System.Windows.Forms.Button calendarUpdateButton;
         private System.Windows.Forms.RadioButton weekRadio;
         private System.Windows.Forms.RadioButton yearRadio;

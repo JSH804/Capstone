@@ -138,6 +138,7 @@
     <Compile Include="Forms\ViewModels\CustomerListModel.cs" />
     <Compile Include="Forms\ViewModels\CustomerProfileModel.cs" />
     <Compile Include="Forms\ViewModels\UserDropDown.cs" />
+    <Compile Include="Helpers\DateTimeExtensions.cs" />
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\Appointment.cs" />
     <Compile Include="Models\City.cs" />
