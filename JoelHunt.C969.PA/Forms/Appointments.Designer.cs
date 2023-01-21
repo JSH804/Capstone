@@ -32,7 +32,7 @@ namespace JoelHunt.C969.PA.Forms
             this.searchCalender = new System.Windows.Forms.MonthCalendar();
             this.calendarUpdateButton = new System.Windows.Forms.Button();
             this.weekRadio = new System.Windows.Forms.RadioButton();
-            this.yearRadio = new System.Windows.Forms.RadioButton();
+            this.monthRadio = new System.Windows.Forms.RadioButton();
             this.allRadio = new System.Windows.Forms.RadioButton();
             this.addAppButton = new System.Windows.Forms.Button();
             this.appointmentDataGrid = new System.Windows.Forms.DataGridView();
@@ -44,6 +44,7 @@ namespace JoelHunt.C969.PA.Forms
             // 
             this.searchCalender.Location = new System.Drawing.Point(793, 194);
             this.searchCalender.Name = "searchCalender";
+            this.searchCalender.ShowWeekNumbers = true;
             this.searchCalender.TabIndex = 1;
             this.searchCalender.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.searchCalender_DateChanged);
             // 
@@ -67,17 +68,19 @@ namespace JoelHunt.C969.PA.Forms
             this.weekRadio.TabStop = true;
             this.weekRadio.Text = "Week";
             this.weekRadio.UseVisualStyleBackColor = true;
+            this.weekRadio.CheckedChanged += new System.EventHandler(this.weekRadio_CheckedChanged);
             // 
-            // yearRadio
+            // monthRadio
             // 
-            this.yearRadio.AutoSize = true;
-            this.yearRadio.Location = new System.Drawing.Point(973, 155);
-            this.yearRadio.Name = "yearRadio";
-            this.yearRadio.Size = new System.Drawing.Size(47, 17);
-            this.yearRadio.TabIndex = 5;
-            this.yearRadio.TabStop = true;
-            this.yearRadio.Text = "Year";
-            this.yearRadio.UseVisualStyleBackColor = true;
+            this.monthRadio.AutoSize = true;
+            this.monthRadio.Location = new System.Drawing.Point(973, 155);
+            this.monthRadio.Name = "monthRadio";
+            this.monthRadio.Size = new System.Drawing.Size(55, 17);
+            this.monthRadio.TabIndex = 5;
+            this.monthRadio.TabStop = true;
+            this.monthRadio.Text = "Month";
+            this.monthRadio.UseVisualStyleBackColor = true;
+            this.monthRadio.CheckedChanged += new System.EventHandler(this.monthRadio_CheckedChanged);
             // 
             // allRadio
             // 
@@ -89,6 +92,7 @@ namespace JoelHunt.C969.PA.Forms
             this.allRadio.TabStop = true;
             this.allRadio.Text = "All";
             this.allRadio.UseVisualStyleBackColor = true;
+            this.allRadio.CheckedChanged += new System.EventHandler(this.allRadio_CheckedChanged);
             // 
             // addAppButton
             // 
@@ -132,7 +136,7 @@ namespace JoelHunt.C969.PA.Forms
             this.Controls.Add(this.appointmentDataGrid);
             this.Controls.Add(this.addAppButton);
             this.Controls.Add(this.allRadio);
-            this.Controls.Add(this.yearRadio);
+            this.Controls.Add(this.monthRadio);
             this.Controls.Add(this.weekRadio);
             this.Controls.Add(this.calendarUpdateButton);
             this.Controls.Add(this.searchCalender);
@@ -148,7 +152,7 @@ namespace JoelHunt.C969.PA.Forms
         private System.Windows.Forms.MonthCalendar searchCalender;
         private System.Windows.Forms.Button calendarUpdateButton;
         private System.Windows.Forms.RadioButton weekRadio;
-        private System.Windows.Forms.RadioButton yearRadio;
+        private System.Windows.Forms.RadioButton monthRadio;
         private System.Windows.Forms.RadioButton allRadio;
         private System.Windows.Forms.Button addAppButton;
         private System.Windows.Forms.DataGridView appointmentDataGrid;

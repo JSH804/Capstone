@@ -12,9 +12,9 @@ namespace JoelHunt.C969.PA.Models
         public string CustomerName { get; set; }
         public int AddressId { get; set;}
         public bool Active { get; set; }
-        public DateTime CreateDate { get; set; }
+        public DateTimeOffset CreateDate { get; set; }
         public string CreatedBy { get; set; }
-        public DateTime LastUpdate { get; set; }
+        public DateTimeOffset LastUpdate { get; set; }
         public string LastUpdateBy { get; set; }
     }
 }

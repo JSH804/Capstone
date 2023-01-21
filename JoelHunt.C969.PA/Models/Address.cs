@@ -14,9 +14,9 @@ namespace JoelHunt.C969.PA.Models
         public int CityId { get; set; }
         public string PostalCode { get; set; }
         public string Phone { get; set; }
-        public DateTime CreatedDate { get; set; }
+        public DateTimeOffset CreatedDate { get; set; }
         public string CreatedBy { get; set; }
-        public DateTime LastUpdate { get; set; }
+        public DateTimeOffset LastUpdate { get; set; }
         public string LastUpdateBy { get; set; }
     }
 }

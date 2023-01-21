@@ -45,6 +45,16 @@ namespace JoelHunt.C969.PA.Forms
         {
             AddAppointment addAppointment = new AddAppointment(this.repo, this.activeUser);
             addAppointment.Show();
+            addAppointment.FormClosed += RefreshTheAppointmentGrid;
+        }
+
+        private void RefreshTheAppointmentGrid(object sender, EventArgs args)
+        {
+            this.appointments = this.appointmentService.GetAppointmentListModels();
+            this.dataGridAppointments = this.appointments;
+            this.appointmentDataGrid.DataSource = typeof(AppointmentListModel);
+            this.appointmentDataGrid.DataSource = this.dataGridAppointments;
+            this.appointmentDataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
         private void calendarUpdateButton_Click(object sender, EventArgs e)
@@ -59,17 +69,17 @@ namespace JoelHunt.C969.PA.Forms
                 this.searchCalender.SelectionRange.Start = startOfWeek;
                 this.searchCalender.SelectionRange.End = endOfWeek;
 
-                this.dataGridAppointments = this.appointments.Where(a => a.Start > startOfWeek && a.End < endOfWeek.AddMilliseconds(86399999)).ToList();
+                this.dataGridAppointments = this.appointments.Where(a => a.StartTime > startOfWeek && a.EndTime < endOfWeek.AddMilliseconds(86399999)).ToList();
                 this.appointmentDataGrid.DataSource = typeof(List<AppointmentListModel>);
                 this.appointmentDataGrid.DataSource = this.dataGridAppointments;
             }
-            else if (this.yearRadio.Checked)
+            else if (this.monthRadio.Checked)
             {
                 DateTime searchDate = this.searchCalender.SelectionStart;
-                DateTime startOfYear = searchDate.AddDays(-searchDate.DayOfYear + 1);
-                DateTime endOfYear = new DateTime(this.searchCalender.SelectionStart.Year, 12, 31).AddMilliseconds(86399999);
+                DateTime startOfMonth = new DateTime(searchDate.Year, searchDate.Month, 1);
+                DateTime endOfMonth = startOfMonth.AddMonths(1).AddDays(-1).AddMilliseconds(86399999);
 
-                this.dataGridAppointments = this.appointments.Where(a => a.Start >= startOfYear && a.End <= endOfYear).ToList();
+                this.dataGridAppointments = this.appointments.Where(a => a.StartTime >= startOfMonth && a.EndTime <= endOfMonth).ToList();
                 this.appointmentDataGrid.DataSource = typeof(List<AppointmentListModel>);
                 this.appointmentDataGrid.DataSource = this.dataGridAppointments;
             }
@@ -84,17 +94,46 @@ namespace JoelHunt.C969.PA.Forms
 
         private void searchCalender_DateChanged(object sender, DateRangeEventArgs e)
         {
-            DateTime searchDate = this.searchCalender.SelectionStart;
-            DateTime startOfWeek = this.searchCalender.SelectionRange.Start = searchDate.StartOfWeek();
+            if (weekRadio.Checked)
+            {
+                this.searchCalender.RemoveAllBoldedDates();
+                int searchDateInt = Convert.ToInt32(this.searchCalender.SelectionStart.DayOfWeek);
+                DateTime startOfWeek = this.searchCalender.SelectionStart.AddDays(-searchDateInt);
 
-            DateTime endOfWeek = searchDate.GetNextWeekday(DayOfWeek.Friday);
-
-            this.searchCalender.SelectionRange.Start = startOfWeek;
-            this.searchCalender.SelectionRange.End = endOfWeek;
-            this.searchCalender.SetSelectionRange(startOfWeek, endOfWeek.AddMilliseconds(86399999));
+                for(int x = 0; x < 7; x++)
+                {
+                    this.searchCalender.AddBoldedDate(startOfWeek.AddDays(x));
+                }
+                this.searchCalender.UpdateBoldedDates();
+            }
         }
+
 
         private List<AppointmentListModel> appointments;
         private List<AppointmentListModel> dataGridAppointments;
+
+        private void allRadio_CheckedChanged(object sender, EventArgs e)
+        {
+            if (this.allRadio.Checked)
+            {
+                this.searchCalender.Hide();
+            }
+        }
+
+        private void weekRadio_CheckedChanged(object sender, EventArgs e)
+        {
+            if(this.weekRadio.Checked || this.monthRadio.Checked)
+            {
+                this.searchCalender.Show();
+            }
+        }
+
+        private void monthRadio_CheckedChanged(object sender, EventArgs e)
+        {
+            if (this.weekRadio.Checked || this.monthRadio.Checked)
+            {
+                this.searchCalender.Show();
+            }
+        }
     }
 }

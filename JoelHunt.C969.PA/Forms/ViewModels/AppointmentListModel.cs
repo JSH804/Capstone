@@ -17,9 +17,23 @@ namespace JoelHunt.C969.PA.Forms.ViewModels
         public string UserName { get; set; }
         [DisplayName("Type")]
         public string Type { get; set; }
+
         [DisplayName("Start Time")]
-        public DateTime Start { get; set; }
+        public DateTime StartTime
+        {
+            get { return this.startTime; }
+            set { this.startTime = TimeZone.CurrentTimeZone.ToLocalTime(value); }
+        }
+
         [DisplayName("End Time")]
-        public DateTime End { get; set; }
+        public DateTime EndTime
+        {
+            get { return this.endTime; }
+            set { this.endTime = TimeZone.CurrentTimeZone.ToLocalTime(value); }
+        }
+
+        private DateTime endTime;
+
+        private DateTime startTime;
     }
 }

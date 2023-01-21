@@ -37,7 +37,7 @@ namespace JoelHunt.C969.PA.Repositories
                 cmd.Parameters.AddWithValue("@type", appointment.Type);
                 cmd.Parameters.AddWithValue("@start", appointment.Start);
                 cmd.Parameters.AddWithValue("@end", appointment.Stop);
-                cmd.Parameters.AddWithValue("@date", DateTime.UtcNow);
+                cmd.Parameters.AddWithValue("@date", DateTimeOffset.UtcNow);
                 cmd.Parameters.AddWithValue("@user", appointment.CreatedBy);
 
                 cmd.ExecuteNonQuery();
@@ -89,8 +89,8 @@ namespace JoelHunt.C969.PA.Repositories
                             CustomerName = (string)reader["customerName"],
                             UserName = (string)reader["userName"],
                             Type = (string)reader["type"],
-                            Start = (DateTime)reader["start"],
-                            End = (DateTime)reader["end"]
+                            StartTime = (DateTime)reader["start"],
+                            EndTime = (DateTime)reader["end"]
                         });
                     }
                 }
@@ -105,6 +105,50 @@ namespace JoelHunt.C969.PA.Repositories
                 mySqlConnection.Close();
             }
 
+            return appointments;
+        }
+
+        public List<AppointmentIdentificationModel> GetAppointmentIdentificationModels()
+        {
+
+            List<AppointmentIdentificationModel> appointments = new List<AppointmentIdentificationModel>();
+            try
+            {
+                mySqlConnection.Open();
+                StringBuilder sql = new StringBuilder();
+
+                sql.Append("SELECT appointment.appointmentId, appointment.start, appointment.end, user.userId ");
+                sql.Append("FROM appointment ");
+                sql.Append("INNER JOIN user on user.userId = appointment.userId ");
+
+                MySqlCommand cmd = new MySqlCommand(sql.ToString(), mySqlConnection);
+
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        appointments.Add(new AppointmentIdentificationModel
+
+                        {
+                            AppointmentId = (int)reader["appointmentId"],
+                            UserId = (int)reader["userId"],
+                            Start = (DateTime)reader["start"],
+                            End = (DateTime)reader["end"]
+                        });
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error getting a collection of appointment indentifications");
+                throw;
+            }
+            finally
+            {
+                mySqlConnection.Close();
+            }
             return appointments;
         }
     }

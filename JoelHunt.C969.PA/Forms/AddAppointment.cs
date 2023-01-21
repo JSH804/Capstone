@@ -1,4 +1,5 @@
-﻿using JoelHunt.C969.PA.Models;
+﻿using JoelHunt.C969.PA.Forms.ViewModels;
+using JoelHunt.C969.PA.Models;
 using JoelHunt.C969.PA.Repositories;
 using JoelHunt.C969.PA.Services;
 using System;
@@ -6,6 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,8 +35,18 @@ namespace JoelHunt.C969.PA.Forms
 
         private void InitializeForm()
         {
-            this.startDatePicker.Format = DateTimePickerFormat.Time;
-            this.endDatePicker.Format = DateTimePickerFormat.Time;
+            this.startDatePicker.ShowUpDown = true;
+            this.endDatePicker.ShowUpDown = true;
+
+            this.startDatePicker.CustomFormat = "hh:mm tt";
+            this.endDatePicker.CustomFormat = "hh:mm tt";
+
+            this.startDatePicker.Format = DateTimePickerFormat.Custom;
+            this.endDatePicker.Format = DateTimePickerFormat.Custom;
+
+            string[] typeArray = new[] { "Presentation", "Scrum", "Car Talk" };
+
+            this.appTypeComboBox.DataSource = typeArray;
 
             GetDropDownList();
         }
@@ -62,31 +74,64 @@ namespace JoelHunt.C969.PA.Forms
 
         private void addButton_Click(object sender, EventArgs e)
         {
-            int.TryParse(this.customerComboBox.SelectedValue.ToString(), out int customerId);
+            try
+            {
+                DateTime startTime = this.startDatePicker.Value;
+                DateTime endTime = this.endDatePicker.Value;
+
+                if (this.startDatePicker.Value > this.endDatePicker.Value)
+                {
+                    throw new ArgumentException("The end time cannot be before the start date!");
+                }
+
+                int.TryParse(this.customerComboBox.SelectedValue.ToString(), out int customerId);
+                int.TryParse(this.userComboBox.SelectedValue.ToString(), out int userId);
+
+                Appointment appointment = new Appointment()
+                {
+                    CustomerId = customerId,
+                    UserId = userId,
+                    Type = this.appTypeComboBox.Text,
+                    Start = this.appCalendar.SelectionStart.AddHours(startTime.Hour).AddMinutes(startTime.Minute),
+                    Stop = this.appCalendar.SelectionStart.AddHours(endTime.Hour).AddMinutes(endTime.Minute),
+                    CreatedBy = this.activeUser.UserName,
+                    LastUpdateBy = this.activeUser.UserName
+                };
+
+                CheckForOverlaps(appointment);
+
+                bool isSaveSuccess = this.appointmentService.AddAppointment(appointment);
+
+                if (isSaveSuccess)
+                {
+                    MessageBox.Show("Appointment saved successfully.");
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Error while saving the appointment.");
+                }
+            }
+            catch(ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void CheckForOverlaps(Appointment appointment)
+        {
+            List<AppointmentIdentificationModel> apps = this.appointmentService.GetAppointmentIdentificationModels();
             int.TryParse(this.userComboBox.SelectedValue.ToString(), out int userId);
-
-            Appointment appointment = new Appointment()
-            {
-                CustomerId = customerId,
-                UserId = userId,
-                Type = this.appTypeTextBox.Text,
-                Start = this.startDatePicker.Value,
-                Stop = this.endDatePicker.Value,
-                CreatedBy = this.activeUser.UserName,
-                LastUpdateBy = this.activeUser.UserName
-            };
-
-            bool isSaveSuccess = this.appointmentService.AddAppointment(appointment);
-
-            if (isSaveSuccess)
-            {
-                MessageBox.Show("Appointment saved successfully.");
+            foreach (var app in apps)
+            {             
+                if (app.UserId == userId)
+                {
+                    if (app.Start >= appointment.Start && app.End <= appointment.Stop)
+                    {
+                        throw new ArgumentException($"The appointment window of {app.Start.ToString("MM/dd/yy hh:mm")} - {app.End.ToString("MM/dd/yy hh:mm")} is already booked for user: {this.userComboBox.Text}");
+                    }
+                }
             }
-            else
-            {
-                MessageBox.Show("Error while saving the appointment.");
-            }
-
         }
     }
 }

@@ -10,7 +10,7 @@ namespace JoelHunt.C969.PA.Helpers
     {
         public static DateTime StartOfWeek(this DateTime datetime)
         {
-            return datetime.AddDays(-(int)datetime.DayOfWeek + 1).Date;
+            return datetime.AddDays(-(int)datetime.DayOfWeek).Date;
         }
 
         public static DateTime GetNextWeekday(this DateTime datetime, DayOfWeek dayOfWeek)

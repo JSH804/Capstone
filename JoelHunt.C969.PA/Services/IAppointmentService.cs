@@ -14,5 +14,6 @@ namespace JoelHunt.C969.PA.Services
         bool AddAppointment(Appointment appointment);
 
         List<AppointmentListModel> GetAppointmentListModels(int userId = 0);
+        List<AppointmentIdentificationModel> GetAppointmentIdentificationModels();
     }
 }
