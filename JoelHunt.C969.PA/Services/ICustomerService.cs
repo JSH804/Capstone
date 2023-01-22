@@ -19,5 +19,7 @@ namespace JoelHunt.C969.PA.Services
         CustomerProfileModel GetCustomerProfile(int id);
 
         bool UpdateCustomer(CustomerProfileModel customer);
+
+        bool DeleteAllCustomersRecords(int id);
     }
 }

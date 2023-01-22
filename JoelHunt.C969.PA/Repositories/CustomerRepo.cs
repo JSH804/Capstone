@@ -147,6 +147,7 @@ namespace JoelHunt.C969.PA.Repositories
                 sql.Append("INNER JOIN address ON address.addressId = customer.addressId ");
                 sql.Append("INNER JOIN city ON city.cityId = address.cityId ");
                 sql.Append("INNER JOIN country ON country.countryId = city.countryId ");
+                sql.Append($"WHERE customer.customerid = {id}");
 
 
 
@@ -251,5 +252,168 @@ namespace JoelHunt.C969.PA.Repositories
                 mySqlConnection.Close();
             }
         }
+
+        public bool DeleteAllCustomersRecords(int id)
+        {
+            try
+            {
+                CustomerProfileModel customer = this.GetCustomerProfile(id);
+
+                this.DeleteAppointments(id);
+                this.DeleteCustomer(id);
+                this.DeleteAddress(customer.AddressId);
+                this.DeleteCity(customer.CityId);
+                this.DeleteCountry(customer.CountryId);
+                return true;
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Error while deleting the customer");
+                return false;
+            }
+            finally
+            {
+                if(mySqlConnection.State == System.Data.ConnectionState.Open)
+                {
+                    mySqlConnection.Close();
+                }
+            }
+        }
+
+        private void DeleteAppointments(int id)
+        {
+            try
+            {
+                mySqlConnection.Open();
+
+                string sql = $"DELETE appointment From appointment WHERE customerId = {id}";
+
+                MySqlCommand cmd = new MySqlCommand(sql, mySqlConnection);
+
+                MySqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read()){
+
+                };
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error while deleting the customer appointsments");
+                throw;
+            }
+            finally
+            {
+                mySqlConnection.Close();
+            }
+        }
+
+        private void DeleteCustomer(int id)
+        {
+            try
+            {
+                mySqlConnection.Open();
+
+                string sql = $"DELETE customer From customer WHERE customerId = {id}";
+
+                MySqlCommand cmd = new MySqlCommand(sql, mySqlConnection);
+
+                MySqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+
+                };
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error while deleting the customer");
+                throw;
+            }
+            finally
+            {
+                mySqlConnection.Close();
+            }
+        }
+
+        private void DeleteAddress(int id)
+        {
+            try
+            {
+                mySqlConnection.Open();
+
+                string sql = $"DELETE address From address WHERE addressId = {id}";
+
+                MySqlCommand cmd = new MySqlCommand(sql, mySqlConnection);
+
+                MySqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+
+                };
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error while deleting the customer address");
+                throw;
+            }
+            finally
+            {
+                mySqlConnection.Close();
+            }
+        }
+
+        private void DeleteCity(int id)
+        {
+            try
+            {
+                mySqlConnection.Open();
+
+                string sql = $"DELETE city From city WHERE cityId = {id}";
+
+                MySqlCommand cmd = new MySqlCommand(sql, mySqlConnection);
+
+                MySqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+
+                };
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error while deleting the customer city");
+                throw;
+            }
+            finally
+            {
+                mySqlConnection.Close();
+            }
+        }
+
+        private void DeleteCountry(int id)
+        {
+            try
+            {
+                mySqlConnection.Open();
+
+                string sql = $"DELETE country From country WHERE countryId = {id}";
+
+                MySqlCommand cmd = new MySqlCommand(sql, mySqlConnection);
+
+                MySqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+
+                };
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error while deleting the customer country");
+                throw;
+            }
+            finally
+            {
+                mySqlConnection.Close();
+            }
+        }
+
     }
 }

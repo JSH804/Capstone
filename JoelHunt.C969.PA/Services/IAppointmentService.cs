@@ -12,6 +12,7 @@ namespace JoelHunt.C969.PA.Services
     public interface IAppointmentService
     {
         bool AddAppointment(Appointment appointment);
+       // AppointmentEditModel GetAppointment(int id);
 
         List<AppointmentListModel> GetAppointmentListModels(int userId = 0);
         List<AppointmentIdentificationModel> GetAppointmentIdentificationModels();

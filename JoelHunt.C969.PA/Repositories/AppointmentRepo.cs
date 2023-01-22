@@ -1,4 +1,5 @@
-﻿using JoelHunt.C969.PA.Forms.ViewModels;
+﻿using JoelHunt.C969.PA.Forms;
+using JoelHunt.C969.PA.Forms.ViewModels;
 using JoelHunt.C969.PA.Models;
 using JoelHunt.C969.PA.Services;
 using MySql.Data.MySqlClient;
@@ -151,5 +152,48 @@ namespace JoelHunt.C969.PA.Repositories
             }
             return appointments;
         }
+
+/*        public AppointmentEditModel GetAppointment(int id)
+        {
+            try
+            {
+                mySqlConnection.Open();
+                StringBuilder sql = new StringBuilder();
+
+                sql.Append("SELECT appointmentId, customerId, userId, type, start, end ");
+                sql.Append("FROM appointment ");
+                sql.Append($"WHERE appointmentId = {id}");
+
+
+                MySqlCommand cmd = new MySqlCommand(sql.ToString(), mySqlConnection);
+
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                AppointmentEditModel app = new AppointmentEditModel();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        app.AppointmentId = (int)reader["appointmentId"];
+                        app.CustomerId = (int)reader["customerId"];
+                        app.UserId = (int)reader["userId"];
+                        app.Type = (string)reader["type"];
+                        app.Start = (DateTime)reader["start"];
+                        app.End = (DateTime)reader["end"];
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error getting a collection of appointment indentifications");
+                throw;
+            }
+            finally
+            {
+                mySqlConnection.Close();
+            }
+            return appointments;
+        }*/
     }
 }

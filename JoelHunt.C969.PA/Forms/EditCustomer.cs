@@ -65,5 +65,20 @@ namespace JoelHunt.C969.PA.Forms
                 MessageBox.Show("Error while updating the customer!");
             }
         }
+
+        private void deleteButton_Click(object sender, EventArgs e)
+        {
+            bool deleteSuccessful = this.customerService.DeleteAllCustomersRecords(this.customer.CustomerId);
+
+            if (deleteSuccessful)
+            {
+                MessageBox.Show("Customer records deleted successfully");
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Delete Failed: There was an error deleting the customer");
+            }
+        }
     }
 }

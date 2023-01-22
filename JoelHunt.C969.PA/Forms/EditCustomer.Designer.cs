@@ -43,6 +43,7 @@ namespace JoelHunt.C969.PA.Forms
             this.nameLabel = new System.Windows.Forms.Label();
             this.addressOneTextBox = new System.Windows.Forms.TextBox();
             this.customerNameTextBox = new System.Windows.Forms.TextBox();
+            this.deleteButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // countryTextBox
@@ -162,11 +163,22 @@ namespace JoelHunt.C969.PA.Forms
             this.customerNameTextBox.Size = new System.Drawing.Size(203, 20);
             this.customerNameTextBox.TabIndex = 25;
             // 
+            // deleteButton
+            // 
+            this.deleteButton.Location = new System.Drawing.Point(235, 33);
+            this.deleteButton.Name = "deleteButton";
+            this.deleteButton.Size = new System.Drawing.Size(96, 23);
+            this.deleteButton.TabIndex = 42;
+            this.deleteButton.Text = "Delete Customer";
+            this.deleteButton.UseVisualStyleBackColor = true;
+            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
+            // 
             // EditCustomer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(357, 517);
+            this.Controls.Add(this.deleteButton);
             this.Controls.Add(this.countryTextBox);
             this.Controls.Add(this.phoneLabel);
             this.Controls.Add(this.phoneTextBox);
@@ -204,5 +216,6 @@ namespace JoelHunt.C969.PA.Forms
         private System.Windows.Forms.Label nameLabel;
         private System.Windows.Forms.TextBox addressOneTextBox;
         private System.Windows.Forms.TextBox customerNameTextBox;
+        private System.Windows.Forms.Button deleteButton;
     }
 }

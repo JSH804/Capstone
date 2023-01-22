@@ -76,8 +76,8 @@ namespace JoelHunt.C969.PA.Forms
         {
             try
             {
-                DateTime startTime = this.startDatePicker.Value;
-                DateTime endTime = this.endDatePicker.Value;
+                DateTime startTime = this.startDatePicker.Value.AddSeconds(-(this.startDatePicker.Value.Second));
+                DateTime endTime = this.endDatePicker.Value.AddSeconds(-(this.endDatePicker.Value.Second));
 
                 if (this.startDatePicker.Value > this.endDatePicker.Value)
                 {
@@ -98,6 +98,7 @@ namespace JoelHunt.C969.PA.Forms
                     LastUpdateBy = this.activeUser.UserName
                 };
 
+                CheckIfInsideBusinessHours(startTime, endTime);
                 CheckForOverlaps(appointment);
 
                 bool isSaveSuccess = this.appointmentService.AddAppointment(appointment);
@@ -115,6 +116,16 @@ namespace JoelHunt.C969.PA.Forms
             catch(ArgumentException ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void CheckIfInsideBusinessHours(DateTimeOffset startTime, DateTimeOffset stopTime)
+        {
+            DateTimeOffset amInsideBusinessHoursStart = new DateTimeOffset(startTime.Year, startTime.Month, startTime.Day, 8, 0, 0, startTime.Offset);
+            DateTimeOffset pmOutsideBusinessHoursEnd = new DateTimeOffset(startTime.Year, startTime.Month, startTime.Day, 17, 0, 0, startTime.Offset);
+            if (!(amInsideBusinessHoursStart < startTime) || !(pmOutsideBusinessHoursEnd >= stopTime))
+            {
+                throw new ArgumentException("This appointment is outside business hours. Please schedule between 8am and 5pm.");
             }
         }
 
