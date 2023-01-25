@@ -59,6 +59,14 @@ namespace JoelHunt.C969.PA.Forms
 
             EditCustomer editCustomerForm = new EditCustomer(this.repo, this.activeUser, customerId);
             editCustomerForm.Show();
+            editCustomerForm.FormClosed += RefreshList;
+        }
+
+        private void RefreshList(object sender, EventArgs args)
+        {
+            GetListOfCustomers();
+            customerDataGrid.DataSource = typeof(CustomerListModel);
+            customerDataGrid.DataSource = this.customers;
         }
 
         private List<CustomerListModel> customers;

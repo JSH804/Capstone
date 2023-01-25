@@ -83,16 +83,16 @@ namespace JoelHunt.C969.PA.Repositories
                 {
                     while (reader.Read())
                     {
-                        appointments.Add(new AppointmentListModel   
+                        appointments.Add(new AppointmentListModel
 
                         {
                             AppointmentId = (int)reader["appointmentId"],
                             CustomerName = (string)reader["customerName"],
                             UserName = (string)reader["userName"],
                             Type = (string)reader["type"],
-                            StartTime = (DateTime)reader["start"],
-                            EndTime = (DateTime)reader["end"]
-                        });
+                            StartTime = ((DateTime)reader["start"]).ToLocalTime(),
+                            EndTime = ((DateTime)reader["end"]).ToLocalTime()
+                        }); ;
                     }
                 }
             }
@@ -153,7 +153,8 @@ namespace JoelHunt.C969.PA.Repositories
             return appointments;
         }
 
-/*        public AppointmentEditModel GetAppointment(int id)
+
+       public AppointmentEditModel GetAppointment(int id)
         {
             try
             {
@@ -180,20 +181,20 @@ namespace JoelHunt.C969.PA.Repositories
                         app.Type = (string)reader["type"];
                         app.Start = (DateTime)reader["start"];
                         app.End = (DateTime)reader["end"];
-
                     }
                 }
+
+                return app;
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error getting a collection of appointment indentifications");
+                Console.WriteLine("Error getting an appointment to edit");
                 throw;
             }
             finally
             {
                 mySqlConnection.Close();
             }
-            return appointments;
-        }*/
+        }
     }
 }

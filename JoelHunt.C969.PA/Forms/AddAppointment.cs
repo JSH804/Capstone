@@ -144,5 +144,20 @@ namespace JoelHunt.C969.PA.Forms
                 }
             }
         }
+
+        private void customerComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void userComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void appTypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

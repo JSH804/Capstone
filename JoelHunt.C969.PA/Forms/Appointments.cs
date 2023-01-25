@@ -108,10 +108,6 @@ namespace JoelHunt.C969.PA.Forms
             }
         }
 
-
-        private List<AppointmentListModel> appointments;
-        private List<AppointmentListModel> dataGridAppointments;
-
         private void allRadio_CheckedChanged(object sender, EventArgs e)
         {
             if (this.allRadio.Checked)
@@ -135,5 +131,17 @@ namespace JoelHunt.C969.PA.Forms
                 this.searchCalender.Show();
             }
         }
+
+        private void editButton_Click(object sender, EventArgs e)
+        {
+            DataGridViewRow row = this.appointmentDataGrid.SelectedRows[0];
+            int appointmentId = Convert.ToInt32(row.Cells["appointmentId"].Value);
+            EditAppointment editForm = new EditAppointment(repo, activeUser, appointmentId);
+            editForm.Show();
+            editForm.FormClosed += RefreshTheAppointmentGrid;
+        }
+
+        private List<AppointmentListModel> appointments;
+        private List<AppointmentListModel> dataGridAppointments;
     }
 }

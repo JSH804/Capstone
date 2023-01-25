@@ -80,5 +80,96 @@ namespace JoelHunt.C969.PA.Forms
                 MessageBox.Show("Delete Failed: There was an error deleting the customer");
             }
         }
+
+        private bool CheckIfFormIsValid()
+        {
+            return !String.IsNullOrWhiteSpace(this.customerNameTextBox.Text) &&
+                !String.IsNullOrWhiteSpace(this.addressOneTextBox.Text) &&
+                !String.IsNullOrWhiteSpace(this.cityTextBox.Text) &&
+                !String.IsNullOrWhiteSpace(this.postalCodeTextBox.Text) &&
+                !String.IsNullOrWhiteSpace(this.countryTextBox.Text) &&
+                !String.IsNullOrWhiteSpace(this.phoneTextBox.Text) &&
+                !String.IsNullOrWhiteSpace(this.cityTextBox.Text);
+
+        }
+
+        private void customerNameTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (String.IsNullOrWhiteSpace(this.customerNameTextBox.Text))
+            {
+                this.customerNameTextBox.BackColor = Color.LightSalmon;
+            }
+            else
+            {
+                this.customerNameTextBox.BackColor = Color.White;
+            }
+
+            this.saveButton.Enabled = CheckIfFormIsValid();
+        }
+
+        private void addressOneTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (String.IsNullOrWhiteSpace(this.addressOneTextBox.Text))
+            {
+                this.addressOneTextBox.BackColor = Color.LightSalmon;
+            }
+            else
+            {
+                this.addressOneTextBox.BackColor = Color.White;
+            }
+            this.saveButton.Enabled = CheckIfFormIsValid();
+        }
+
+        private void cityTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (String.IsNullOrWhiteSpace(this.cityTextBox.Text))
+            {
+                this.cityTextBox.BackColor = Color.LightSalmon;
+            }
+            else
+            {
+                this.cityTextBox.BackColor = Color.White;
+            }
+            this.saveButton.Enabled = CheckIfFormIsValid();
+        }
+
+        private void postalCodeTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (String.IsNullOrWhiteSpace(this.postalCodeTextBox.Text))
+            {
+                this.postalCodeTextBox.BackColor = Color.LightSalmon;
+            }
+            else
+            {
+                this.postalCodeTextBox.BackColor = Color.White;
+            }
+            this.saveButton.Enabled = CheckIfFormIsValid();
+        }
+
+        private void countryTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (String.IsNullOrWhiteSpace(this.countryTextBox.Text))
+            {
+                this.countryTextBox.BackColor = Color.LightSalmon;
+            }
+            else
+            {
+                this.countryTextBox.BackColor = Color.White;
+            }
+            this.saveButton.Enabled = CheckIfFormIsValid();
+        }
+
+        private void phoneTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (String.IsNullOrWhiteSpace(this.phoneTextBox.Text))
+            {
+                this.phoneTextBox.BackColor = Color.LightSalmon;
+            }
+            else
+            {
+                this.phoneTextBox.BackColor = Color.White;
+            }
+            this.saveButton.Enabled = CheckIfFormIsValid();
+        }
     }
 }

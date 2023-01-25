@@ -151,6 +151,7 @@ namespace JoelHunt.C969.PA.Forms
             this.customerComboBox.Name = "customerComboBox";
             this.customerComboBox.Size = new System.Drawing.Size(229, 21);
             this.customerComboBox.TabIndex = 16;
+            this.customerComboBox.SelectedIndexChanged += new System.EventHandler(this.customerComboBox_SelectedIndexChanged);
             // 
             // headerLabel
             // 

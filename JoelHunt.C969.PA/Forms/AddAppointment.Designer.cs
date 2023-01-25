@@ -62,6 +62,7 @@ namespace JoelHunt.C969.PA.Forms
             this.customerComboBox.Name = "customerComboBox";
             this.customerComboBox.Size = new System.Drawing.Size(229, 21);
             this.customerComboBox.TabIndex = 1;
+            this.customerComboBox.SelectedIndexChanged += new System.EventHandler(this.customerComboBox_SelectedIndexChanged);
             // 
             // userComboBox
             // 
@@ -70,6 +71,7 @@ namespace JoelHunt.C969.PA.Forms
             this.userComboBox.Name = "userComboBox";
             this.userComboBox.Size = new System.Drawing.Size(229, 21);
             this.userComboBox.TabIndex = 2;
+            this.userComboBox.SelectedIndexChanged += new System.EventHandler(this.userComboBox_SelectedIndexChanged);
             // 
             // customerLabel
             // 
@@ -162,6 +164,7 @@ namespace JoelHunt.C969.PA.Forms
             this.appTypeComboBox.Name = "appTypeComboBox";
             this.appTypeComboBox.Size = new System.Drawing.Size(227, 21);
             this.appTypeComboBox.TabIndex = 14;
+            this.appTypeComboBox.SelectedIndexChanged += new System.EventHandler(this.appTypeComboBox_SelectedIndexChanged);
             // 
             // AddAppointment
             // 

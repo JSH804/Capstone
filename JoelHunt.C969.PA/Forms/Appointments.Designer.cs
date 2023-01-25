@@ -37,6 +37,7 @@ namespace JoelHunt.C969.PA.Forms
             this.addAppButton = new System.Windows.Forms.Button();
             this.appointmentDataGrid = new System.Windows.Forms.DataGridView();
             this.headerLabel = new System.Windows.Forms.Label();
+            this.editButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.appointmentDataGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -96,7 +97,7 @@ namespace JoelHunt.C969.PA.Forms
             // 
             // addAppButton
             // 
-            this.addAppButton.Location = new System.Drawing.Point(647, 441);
+            this.addAppButton.Location = new System.Drawing.Point(647, 32);
             this.addAppButton.Name = "addAppButton";
             this.addAppButton.Size = new System.Drawing.Size(109, 23);
             this.addAppButton.TabIndex = 7;
@@ -127,11 +128,22 @@ namespace JoelHunt.C969.PA.Forms
             this.headerLabel.TabIndex = 9;
             this.headerLabel.Text = "Appointments";
             // 
+            // editButton
+            // 
+            this.editButton.Location = new System.Drawing.Point(655, 437);
+            this.editButton.Name = "editButton";
+            this.editButton.Size = new System.Drawing.Size(101, 23);
+            this.editButton.TabIndex = 10;
+            this.editButton.Text = "Edit Appointment";
+            this.editButton.UseVisualStyleBackColor = true;
+            this.editButton.Click += new System.EventHandler(this.editButton_Click);
+            // 
             // Appointments
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1038, 562);
+            this.Controls.Add(this.editButton);
             this.Controls.Add(this.headerLabel);
             this.Controls.Add(this.appointmentDataGrid);
             this.Controls.Add(this.addAppButton);
@@ -157,5 +169,6 @@ namespace JoelHunt.C969.PA.Forms
         private System.Windows.Forms.Button addAppButton;
         private System.Windows.Forms.DataGridView appointmentDataGrid;
         private System.Windows.Forms.Label headerLabel;
+        private System.Windows.Forms.Button editButton;
     }
 }

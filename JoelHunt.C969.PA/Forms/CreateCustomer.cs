@@ -9,6 +9,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace JoelHunt.C969.PA.Forms
@@ -29,43 +30,11 @@ namespace JoelHunt.C969.PA.Forms
             this.cityService = repo.Cities;
             this.activeUser = activeUser;
             InitializeComponent();
-
-        }
-
-        private void AddControls()
-        {
-            controlsList.Add(this.customerNameTextBox);
-            controlsList.Add(this.addressOneTextBox);
-            controlsList.Add(this.cityTextBox);
-            controlsList.Add(this.postalCodeTextBox);
-        }
-
-        private ErrorProvider ValidateControls()
-        {
-            ErrorProvider errorProvider = new ErrorProvider();
-            foreach (Control control in controlsList)
-            {
-                if (String.IsNullOrWhiteSpace(control.Text))
-                {
-
-                    errorProvider.SetError(control, "Required");
-                }
-            }
-            return errorProvider;
+            createButton.Enabled = false;
         }
 
         private void createButton_Click(object sender, EventArgs e)
         {
-            ErrorProvider errorProvider = ValidateControls();
-
-            foreach(Control control in controlsList)
-            {
-                if (!string.IsNullOrEmpty(errorProvider.GetError(control)))
-                {
-                    MessageBox.Show("You are missing required fields");
-                    return;
-                }
-            }
             try
             {
                 int countryId = ProcessCountry();
@@ -82,6 +51,7 @@ namespace JoelHunt.C969.PA.Forms
                 this.customerService.CreateCustomer(customer);
 
                 MessageBox.Show("Customer created successfully");
+                this.Close();
 
             }
             catch (Exception ex)
@@ -121,13 +91,103 @@ namespace JoelHunt.C969.PA.Forms
                 AddressOne = this.addressOneTextBox.Text,
                 CityId = cityId,
                 PostalCode = this.postalCodeTextBox.Text,
-                Phone = this.phoneLabel.Text,
+                Phone = this.phoneTextBox.Text,
                 CreatedBy = this.activeUser.UserName,
             };
 
             return this.addressService.CreateAddress(address);
         }
 
+        private bool CheckIfFormIsValid()
+        {
+            return !String.IsNullOrWhiteSpace(this.customerNameTextBox.Text) &&
+                !String.IsNullOrWhiteSpace(this.addressOneTextBox.Text) &&
+                !String.IsNullOrWhiteSpace(this.cityTextBox.Text) &&
+                !String.IsNullOrWhiteSpace(this.postalCodeTextBox.Text) &&
+                !String.IsNullOrWhiteSpace(this.countryTextBox.Text) &&
+                !String.IsNullOrWhiteSpace(this.phoneTextBox.Text) &&
+                !String.IsNullOrWhiteSpace(this.cityTextBox.Text);
+
+        }
+
+        private void customerNameTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (String.IsNullOrWhiteSpace(this.customerNameTextBox.Text))
+            {
+                this.customerNameTextBox.BackColor = Color.LightSalmon;
+            }
+            else
+            {
+                this.customerNameTextBox.BackColor = Color.White;
+            }
+
+            this.createButton.Enabled = CheckIfFormIsValid();
+        }
+
+        private void addressOneTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (String.IsNullOrWhiteSpace(this.addressOneTextBox.Text))
+            {
+                this.addressOneTextBox.BackColor = Color.LightSalmon;
+            }
+            else
+            {
+                this.addressOneTextBox.BackColor = Color.White;
+            }
+            this.createButton.Enabled = CheckIfFormIsValid();
+        }
+
+        private void cityTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (String.IsNullOrWhiteSpace(this.cityTextBox.Text))
+            {
+                this.cityTextBox.BackColor = Color.LightSalmon;
+            }
+            else
+            {
+                this.cityTextBox.BackColor = Color.White;
+            }
+            this.createButton.Enabled = CheckIfFormIsValid();
+        }
+
+        private void postalCodeTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (String.IsNullOrWhiteSpace(this.postalCodeTextBox.Text))
+            {
+                this.postalCodeTextBox.BackColor = Color.LightSalmon;
+            }
+            else
+            {
+                this.postalCodeTextBox.BackColor = Color.White;
+            }
+            this.createButton.Enabled = CheckIfFormIsValid();
+        }
+
+        private void countryTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (String.IsNullOrWhiteSpace(this.countryTextBox.Text))
+            {
+                this.countryTextBox.BackColor = Color.LightSalmon;
+            }
+            else
+            {
+                this.countryTextBox.BackColor = Color.White;
+            }
+            this.createButton.Enabled = CheckIfFormIsValid();
+        }
+
+        private void phoneTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (String.IsNullOrWhiteSpace(this.phoneTextBox.Text))
+            {
+                this.phoneTextBox.BackColor = Color.LightSalmon;
+            }
+            else
+            {
+                this.phoneTextBox.BackColor = Color.White;
+            }
+            this.createButton.Enabled = CheckIfFormIsValid();
+        }
 
         private Customer customer;
         private City city;

@@ -51,6 +51,7 @@ namespace JoelHunt.C969.PA.Forms
             this.customerNameTextBox.Name = "customerNameTextBox";
             this.customerNameTextBox.Size = new System.Drawing.Size(203, 20);
             this.customerNameTextBox.TabIndex = 0;
+            this.customerNameTextBox.TextChanged += new System.EventHandler(this.customerNameTextBox_TextChanged);
             // 
             // addressOneTextBox
             // 
@@ -58,6 +59,7 @@ namespace JoelHunt.C969.PA.Forms
             this.addressOneTextBox.Name = "addressOneTextBox";
             this.addressOneTextBox.Size = new System.Drawing.Size(203, 20);
             this.addressOneTextBox.TabIndex = 1;
+            this.addressOneTextBox.TextChanged += new System.EventHandler(this.addressOneTextBox_TextChanged);
             // 
             // nameLabel
             // 
@@ -92,6 +94,7 @@ namespace JoelHunt.C969.PA.Forms
             this.postalCodeTextBox.Name = "postalCodeTextBox";
             this.postalCodeTextBox.Size = new System.Drawing.Size(202, 20);
             this.postalCodeTextBox.TabIndex = 9;
+            this.postalCodeTextBox.TextChanged += new System.EventHandler(this.postalCodeTextBox_TextChanged);
             // 
             // postalCodeLabel
             // 
@@ -138,6 +141,7 @@ namespace JoelHunt.C969.PA.Forms
             this.cityTextBox.Name = "cityTextBox";
             this.cityTextBox.Size = new System.Drawing.Size(203, 20);
             this.cityTextBox.TabIndex = 20;
+            this.cityTextBox.TextChanged += new System.EventHandler(this.cityTextBox_TextChanged);
             // 
             // phoneTextBox
             // 
@@ -145,6 +149,7 @@ namespace JoelHunt.C969.PA.Forms
             this.phoneTextBox.Name = "phoneTextBox";
             this.phoneTextBox.Size = new System.Drawing.Size(202, 20);
             this.phoneTextBox.TabIndex = 22;
+            this.phoneTextBox.TextChanged += new System.EventHandler(this.phoneTextBox_TextChanged);
             // 
             // phoneLabel
             // 
@@ -161,6 +166,7 @@ namespace JoelHunt.C969.PA.Forms
             this.countryTextBox.Name = "countryTextBox";
             this.countryTextBox.Size = new System.Drawing.Size(203, 20);
             this.countryTextBox.TabIndex = 24;
+            this.countryTextBox.TextChanged += new System.EventHandler(this.countryTextBox_TextChanged);
             // 
             // CreateCustomer
             // 

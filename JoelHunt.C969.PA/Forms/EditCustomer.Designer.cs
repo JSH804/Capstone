@@ -52,6 +52,7 @@ namespace JoelHunt.C969.PA.Forms
             this.countryTextBox.Name = "countryTextBox";
             this.countryTextBox.Size = new System.Drawing.Size(203, 20);
             this.countryTextBox.TabIndex = 41;
+            this.countryTextBox.TextChanged += new System.EventHandler(this.countryTextBox_TextChanged);
             // 
             // phoneLabel
             // 
@@ -68,6 +69,7 @@ namespace JoelHunt.C969.PA.Forms
             this.phoneTextBox.Name = "phoneTextBox";
             this.phoneTextBox.Size = new System.Drawing.Size(202, 20);
             this.phoneTextBox.TabIndex = 39;
+            this.phoneTextBox.TextChanged += new System.EventHandler(this.phoneTextBox_TextChanged);
             // 
             // cityTextBox
             // 
@@ -75,6 +77,7 @@ namespace JoelHunt.C969.PA.Forms
             this.cityTextBox.Name = "cityTextBox";
             this.cityTextBox.Size = new System.Drawing.Size(203, 20);
             this.cityTextBox.TabIndex = 37;
+            this.cityTextBox.TextChanged += new System.EventHandler(this.cityTextBox_TextChanged);
             // 
             // headerLabel
             // 
@@ -121,6 +124,7 @@ namespace JoelHunt.C969.PA.Forms
             this.postalCodeTextBox.Name = "postalCodeTextBox";
             this.postalCodeTextBox.Size = new System.Drawing.Size(202, 20);
             this.postalCodeTextBox.TabIndex = 32;
+            this.postalCodeTextBox.TextChanged += new System.EventHandler(this.postalCodeTextBox_TextChanged);
             // 
             // cityLabel
             // 
@@ -155,6 +159,7 @@ namespace JoelHunt.C969.PA.Forms
             this.addressOneTextBox.Name = "addressOneTextBox";
             this.addressOneTextBox.Size = new System.Drawing.Size(203, 20);
             this.addressOneTextBox.TabIndex = 26;
+            this.addressOneTextBox.TextChanged += new System.EventHandler(this.addressOneTextBox_TextChanged);
             // 
             // customerNameTextBox
             // 
@@ -162,6 +167,7 @@ namespace JoelHunt.C969.PA.Forms
             this.customerNameTextBox.Name = "customerNameTextBox";
             this.customerNameTextBox.Size = new System.Drawing.Size(203, 20);
             this.customerNameTextBox.TabIndex = 25;
+            this.customerNameTextBox.TextChanged += new System.EventHandler(this.customerNameTextBox_TextChanged);
             // 
             // deleteButton
             // 
