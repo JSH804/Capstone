@@ -153,6 +153,39 @@ namespace JoelHunt.C969.PA.Repositories
             return appointments;
         }
 
+        public bool UpdateAppointment(Appointment app)
+        {
+            try
+            {
+                mySqlConnection.Open();
+
+                StringBuilder sqlBuilder = new StringBuilder();
+                sqlBuilder.Append("UPDATE appointment");
+                sqlBuilder.Append($" SET customerId = {app.CustomerId}, userId = {app.UserId}, type = '{app.Type}', start = '{app.Start}', end = '{app.Stop}', lastUpdate = '{app.LastUpdate}', lastUpdateBy = '{app.LastUpdateBy}'");
+                sqlBuilder.Append($" WHERE appointmentId = {app.AppointmentId}");
+
+                MySqlCommand cmd = new MySqlCommand(sqlBuilder.ToString(), mySqlConnection);
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                }
+
+                reader.Close();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error while updating the appointment.");
+                return false;
+            }
+            finally
+            {
+                mySqlConnection.Close();
+            }
+        }
+
 
        public AppointmentEditModel GetAppointment(int id)
         {
@@ -190,6 +223,34 @@ namespace JoelHunt.C969.PA.Repositories
             {
                 Console.WriteLine("Error getting an appointment to edit");
                 throw;
+            }
+            finally
+            {
+                mySqlConnection.Close();
+            }
+        }
+
+        public bool DeleteAppointment(int id)
+        {
+            try
+            {
+                mySqlConnection.Open();
+                string sql = $"DELETE FROM appointment WHERE appointmentId = {id}";
+
+                MySqlCommand cmd = new MySqlCommand(sql, mySqlConnection);
+
+                MySqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+
+                };
+
+                return true;
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Error deleting the appointment");
+                return false;
             }
             finally
             {

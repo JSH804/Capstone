@@ -38,6 +38,7 @@ namespace JoelHunt.C969.PA.Forms
             this.appointmentDataGrid = new System.Windows.Forms.DataGridView();
             this.headerLabel = new System.Windows.Forms.Label();
             this.editButton = new System.Windows.Forms.Button();
+            this.deleteButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.appointmentDataGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -138,11 +139,22 @@ namespace JoelHunt.C969.PA.Forms
             this.editButton.UseVisualStyleBackColor = true;
             this.editButton.Click += new System.EventHandler(this.editButton_Click);
             // 
+            // deleteButton
+            // 
+            this.deleteButton.Location = new System.Drawing.Point(532, 437);
+            this.deleteButton.Name = "deleteButton";
+            this.deleteButton.Size = new System.Drawing.Size(117, 23);
+            this.deleteButton.TabIndex = 11;
+            this.deleteButton.Text = "Delete Appointment";
+            this.deleteButton.UseVisualStyleBackColor = true;
+            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
+            // 
             // Appointments
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1038, 562);
+            this.Controls.Add(this.deleteButton);
             this.Controls.Add(this.editButton);
             this.Controls.Add(this.headerLabel);
             this.Controls.Add(this.appointmentDataGrid);
@@ -170,5 +182,6 @@ namespace JoelHunt.C969.PA.Forms
         private System.Windows.Forms.DataGridView appointmentDataGrid;
         private System.Windows.Forms.Label headerLabel;
         private System.Windows.Forms.Button editButton;
+        private System.Windows.Forms.Button deleteButton;
     }
 }

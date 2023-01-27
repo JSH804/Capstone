@@ -17,11 +17,11 @@ namespace JoelHunt.C969.PA.Models
         public string Contact { get; set; }
         public string Type { get; set; }
         public string Url { get; set; }
-        public DateTimeOffset Start { get; set; }
-        public DateTimeOffset Stop { get; set; }
-        public DateTimeOffset CreatedDate { get; set;}
+        public DateTime Start { get; set; }
+        public DateTime Stop { get; set; }
+        public DateTime CreatedDate { get; set;}
         public string CreatedBy { get; set; }
-        public DateTimeOffset LastUpdate { get; set; }
+        public DateTime LastUpdate { get; set; }
         public string LastUpdateBy { get; set; }
 
         public DateTime ConvertedStartTimeZoneTime

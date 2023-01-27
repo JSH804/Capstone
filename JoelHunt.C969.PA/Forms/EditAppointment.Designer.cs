@@ -32,7 +32,7 @@ namespace JoelHunt.C969.PA.Forms
             this.appTypeComboBox = new System.Windows.Forms.ComboBox();
             this.appDayLabel = new System.Windows.Forms.Label();
             this.appCalendar = new System.Windows.Forms.MonthCalendar();
-            this.addButton = new System.Windows.Forms.Button();
+            this.saveButton = new System.Windows.Forms.Button();
             this.endTimeLabel = new System.Windows.Forms.Label();
             this.startTimeLabel = new System.Windows.Forms.Label();
             this.typeLabel = new System.Windows.Forms.Label();
@@ -43,6 +43,7 @@ namespace JoelHunt.C969.PA.Forms
             this.userComboBox = new System.Windows.Forms.ComboBox();
             this.customerComboBox = new System.Windows.Forms.ComboBox();
             this.headerLabel = new System.Windows.Forms.Label();
+            this.deleteButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // appTypeComboBox
@@ -68,14 +69,16 @@ namespace JoelHunt.C969.PA.Forms
             this.appCalendar.Name = "appCalendar";
             this.appCalendar.TabIndex = 26;
             // 
-            // addButton
+            // saveButton
             // 
-            this.addButton.Location = new System.Drawing.Point(263, 582);
-            this.addButton.Name = "addButton";
-            this.addButton.Size = new System.Drawing.Size(75, 23);
-            this.addButton.TabIndex = 25;
-            this.addButton.Text = "Add";
-            this.addButton.UseVisualStyleBackColor = true;
+            this.saveButton.Location = new System.Drawing.Point(263, 582);
+            this.saveButton.Name = "saveButton";
+            this.saveButton.Size = new System.Drawing.Size(75, 23);
+            this.saveButton.TabIndex = 25;
+            this.saveButton.Text = "Save";
+            this.saveButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.saveButton.UseVisualStyleBackColor = true;
+            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
             // endTimeLabel
             // 
@@ -163,15 +166,26 @@ namespace JoelHunt.C969.PA.Forms
             this.headerLabel.TabIndex = 15;
             this.headerLabel.Text = "Edit Appointment";
             // 
+            // deleteButton
+            // 
+            this.deleteButton.Location = new System.Drawing.Point(263, 45);
+            this.deleteButton.Name = "deleteButton";
+            this.deleteButton.Size = new System.Drawing.Size(121, 23);
+            this.deleteButton.TabIndex = 29;
+            this.deleteButton.Text = "Delete Appointment";
+            this.deleteButton.UseVisualStyleBackColor = true;
+            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
+            // 
             // EditAppointment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(412, 665);
+            this.ClientSize = new System.Drawing.Size(421, 665);
+            this.Controls.Add(this.deleteButton);
             this.Controls.Add(this.appTypeComboBox);
             this.Controls.Add(this.appDayLabel);
             this.Controls.Add(this.appCalendar);
-            this.Controls.Add(this.addButton);
+            this.Controls.Add(this.saveButton);
             this.Controls.Add(this.endTimeLabel);
             this.Controls.Add(this.startTimeLabel);
             this.Controls.Add(this.typeLabel);
@@ -194,7 +208,7 @@ namespace JoelHunt.C969.PA.Forms
         private System.Windows.Forms.ComboBox appTypeComboBox;
         private System.Windows.Forms.Label appDayLabel;
         private System.Windows.Forms.MonthCalendar appCalendar;
-        private System.Windows.Forms.Button addButton;
+        private System.Windows.Forms.Button saveButton;
         private System.Windows.Forms.Label endTimeLabel;
         private System.Windows.Forms.Label startTimeLabel;
         private System.Windows.Forms.Label typeLabel;
@@ -205,5 +219,6 @@ namespace JoelHunt.C969.PA.Forms
         private System.Windows.Forms.ComboBox userComboBox;
         private System.Windows.Forms.ComboBox customerComboBox;
         private System.Windows.Forms.Label headerLabel;
+        private System.Windows.Forms.Button deleteButton;
     }
 }

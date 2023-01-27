@@ -57,6 +57,15 @@ namespace JoelHunt.C969.PA.Forms
             this.appointmentDataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
+        private void RefreshTheAppointmentGrid()
+        {
+            this.appointments = this.appointmentService.GetAppointmentListModels();
+            this.dataGridAppointments = this.appointments;
+            this.appointmentDataGrid.DataSource = typeof(AppointmentListModel);
+            this.appointmentDataGrid.DataSource = this.dataGridAppointments;
+            this.appointmentDataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+        }
+
         private void calendarUpdateButton_Click(object sender, EventArgs e)
         {
             if (this.weekRadio.Checked)
@@ -139,6 +148,24 @@ namespace JoelHunt.C969.PA.Forms
             EditAppointment editForm = new EditAppointment(repo, activeUser, appointmentId);
             editForm.Show();
             editForm.FormClosed += RefreshTheAppointmentGrid;
+        }
+
+        private void deleteButton_Click(object sender, EventArgs e)
+        {
+            DataGridViewRow row = this.appointmentDataGrid.SelectedRows[0];
+            int appointmentId = Convert.ToInt32(row.Cells["appointmentId"].Value);
+
+            bool isDeleteSuccessful = this.appointmentService.DeleteAppointment(appointmentId);
+
+            if (isDeleteSuccessful)
+            {
+                MessageBox.Show("Delete was successful.");
+                RefreshTheAppointmentGrid();
+            }
+            else
+            {
+                MessageBox.Show("Error will deleteing the appointment.");
+            }
         }
 
         private List<AppointmentListModel> appointments;
