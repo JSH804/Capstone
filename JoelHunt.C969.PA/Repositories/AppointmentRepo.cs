@@ -78,7 +78,7 @@ namespace JoelHunt.C969.PA.Repositories
                 MySqlCommand cmd = new MySqlCommand(sql.ToString(), mySqlConnection);
 
                 MySqlDataReader reader = cmd.ExecuteReader();
-
+                TimeZoneInfo timeZoneInfo = TimeZoneInfo.Local;
                 if (reader.HasRows)
                 {
                     while (reader.Read())
@@ -90,8 +90,61 @@ namespace JoelHunt.C969.PA.Repositories
                             CustomerName = (string)reader["customerName"],
                             UserName = (string)reader["userName"],
                             Type = (string)reader["type"],
-                            StartTime = ((DateTime)reader["start"]).ToLocalTime(),
-                            EndTime = ((DateTime)reader["end"]).ToLocalTime()
+                            StartTime = TimeZoneInfo.ConvertTimeFromUtc((DateTime)reader["start"], timeZoneInfo),
+                            EndTime = TimeZoneInfo.ConvertTimeFromUtc((DateTime)reader["end"], timeZoneInfo) 
+                        }); ;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error getting a collection of appointments");
+                throw;
+            }
+            finally
+            {
+                mySqlConnection.Close();
+            }
+
+            return appointments;
+        }
+
+        public List<AppointmentListReport> GetAppointmentListReport(int userId = 0)
+        {
+            List<AppointmentListReport> appointments = new List<AppointmentListReport>();
+            try
+            {
+                mySqlConnection.Open();
+                StringBuilder sql = new StringBuilder();
+
+                sql.Append("SELECT customer.customerName, appointment.appointmentId, appointment.userId, appointment.type, appointment.start, appointment.end, user.userName ");
+                sql.Append("FROM appointment ");
+                sql.Append("INNER JOIN user on user.userId = appointment.userId ");
+                sql.Append("INNER JOIN customer on customer.customerId = appointment.customerId");
+
+                if (userId != 0)
+                {
+                    sql.Append($" WHERE appointment.userId = {userId}");
+                }
+
+                MySqlCommand cmd = new MySqlCommand(sql.ToString(), mySqlConnection);
+
+                MySqlDataReader reader = cmd.ExecuteReader();
+                TimeZoneInfo timeZoneInfo = TimeZoneInfo.Local;
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        appointments.Add(new AppointmentListReport
+
+                        {
+                            AppointmentId = (int)reader["appointmentId"],
+                            CustomerName = (string)reader["customerName"],
+                            UserId = (int)reader["userId"],
+                            UserName = (string)reader["userName"],
+                            Type = (string)reader["type"],
+                            StartTime = TimeZoneInfo.ConvertTimeFromUtc((DateTime)reader["start"], timeZoneInfo),
+                            EndTime = TimeZoneInfo.ConvertTimeFromUtc((DateTime)reader["end"], timeZoneInfo)
                         }); ;
                     }
                 }
@@ -125,7 +178,7 @@ namespace JoelHunt.C969.PA.Repositories
                 MySqlCommand cmd = new MySqlCommand(sql.ToString(), mySqlConnection);
 
                 MySqlDataReader reader = cmd.ExecuteReader();
-
+                TimeZoneInfo timeZoneInfo = TimeZoneInfo.Local;
                 if (reader.HasRows)
                 {
                     while (reader.Read())
@@ -135,8 +188,8 @@ namespace JoelHunt.C969.PA.Repositories
                         {
                             AppointmentId = (int)reader["appointmentId"],
                             UserId = (int)reader["userId"],
-                            Start = (DateTime)reader["start"],
-                            End = (DateTime)reader["end"]
+                            Start = TimeZoneInfo.ConvertTimeFromUtc((DateTime)reader["start"], timeZoneInfo),
+                            End = TimeZoneInfo.ConvertTimeFromUtc((DateTime)reader["end"], timeZoneInfo)
                         });
                     }
                 }
@@ -202,7 +255,7 @@ namespace JoelHunt.C969.PA.Repositories
                 MySqlCommand cmd = new MySqlCommand(sql.ToString(), mySqlConnection);
 
                 MySqlDataReader reader = cmd.ExecuteReader();
-
+                TimeZoneInfo timeZoneInfo = TimeZoneInfo.Local;
                 AppointmentEditModel app = new AppointmentEditModel();
                 if (reader.HasRows)
                 {
@@ -212,8 +265,8 @@ namespace JoelHunt.C969.PA.Repositories
                         app.CustomerId = (int)reader["customerId"];
                         app.UserId = (int)reader["userId"];
                         app.Type = (string)reader["type"];
-                        app.Start = (DateTime)reader["start"];
-                        app.End = (DateTime)reader["end"];
+                        app.Start = TimeZoneInfo.ConvertTimeFromUtc((DateTime)reader["start"], timeZoneInfo);
+                        app.End = TimeZoneInfo.ConvertTimeFromUtc((DateTime)reader["end"], timeZoneInfo);
                     }
                 }
 

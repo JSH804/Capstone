@@ -96,6 +96,12 @@
     <Compile Include="Forms\AddAppointment.Designer.cs">
       <DependentUpon>AddAppointment.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\AppointmentByMonth.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AppointmentByMonth.Designer.cs">
+      <DependentUpon>AppointmentByMonth.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Appointments.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -138,10 +144,23 @@
     <Compile Include="Forms\MainWindow.Designer.cs">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\UserSchedule.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\UserSchedule.Designer.cs">
+      <DependentUpon>UserSchedule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UserTypeReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\UserTypeReport.Designer.cs">
+      <DependentUpon>UserTypeReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ViewModels\AppointmentAddModel.cs" />
     <Compile Include="Forms\ViewModels\AppointmentEditModel.cs" />
     <Compile Include="Forms\ViewModels\AppointmentIdentificationModel.cs" />
     <Compile Include="Forms\ViewModels\AppointmentListModel.cs" />
+    <Compile Include="Forms\ViewModels\AppointmentListReport.cs" />
     <Compile Include="Forms\ViewModels\CustomerDropDown.cs" />
     <Compile Include="Forms\ViewModels\CustomerListModel.cs" />
     <Compile Include="Forms\ViewModels\CustomerProfileModel.cs" />
@@ -172,6 +191,9 @@
     <EmbeddedResource Include="Forms\AddAppointment.resx">
       <DependentUpon>AddAppointment.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AppointmentByMonth.resx">
+      <DependentUpon>AppointmentByMonth.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Appointments.resx">
       <DependentUpon>Appointments.cs</DependentUpon>
     </EmbeddedResource>
@@ -192,6 +214,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UserSchedule.resx">
+      <DependentUpon>UserSchedule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UserTypeReport.resx">
+      <DependentUpon>UserTypeReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

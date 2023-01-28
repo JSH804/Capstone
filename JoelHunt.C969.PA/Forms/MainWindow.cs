@@ -63,5 +63,23 @@ namespace JoelHunt.C969.PA.Forms
             AddAppointment addAppointment = new AddAppointment(this.repo, this.activeUser);
             addAppointment.Show();
         }
+
+        private void findAppointmentTypeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UserTypeReport report = new UserTypeReport(this.repo);
+            report.Show();
+        }
+
+        private void schedulePerUserToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UserSchedule userSchedule = new UserSchedule(repo);
+            userSchedule.Show();
+        }
+
+        private void appointmentsForCustomerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AppointmentByMonth report = new AppointmentByMonth(repo);
+            report.Show();
+        }
     }
 }
