@@ -15,6 +15,12 @@ namespace JoelHunt.C969.PA.Helpers
 
         public static DateTime GetNextWeekday(this DateTime datetime, DayOfWeek dayOfWeek)
         {
+
+            if(datetime.DayOfWeek == dayOfWeek)
+            {
+                return datetime.Date;
+            };
+
             DateTime nextday = datetime.AddDays(1);
 
             int currentDay = (int)datetime.DayOfWeek;

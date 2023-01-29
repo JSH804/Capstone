@@ -10,9 +10,8 @@ namespace JoelHunt.C969.PA.Services
 {
     public interface IUserService
     {
+        void AddTestUser();
         User VerifyAndGetUser(string username, string password);
-
-        IEnumerable<User> GetUsers();
 
         List<UserDropDown> GetUserDropDown();
     }

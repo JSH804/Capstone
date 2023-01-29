@@ -22,21 +22,43 @@ namespace JoelHunt.C969.PA.Repositories
             this.mySqlConnection = mySqlConnection;
         }
 
-        public User GetUser(int id)
+        public void AddTestUser()
         {
-            throw new NotImplementedException();
-        }
+            try
+            {
+                mySqlConnection.Open();
+                MySqlCommand cmd = mySqlConnection.CreateCommand();
+                cmd.CommandText = $"INSERT INTO user(userName,password,active,createDate,createdBy,lastUpdate,lastUpdateBy)VALUES('test','test', true, @date, 'system', @date, 'system')";
+                cmd.Parameters.AddWithValue("@date", DateTime.UtcNow);
+                cmd.ExecuteNonQuery();
+                mySqlConnection.Close();
 
-        public IEnumerable<User> GetUsers()
-        {
-            throw new NotImplementedException();
+                mySqlConnection.Open();
+                cmd = mySqlConnection.CreateCommand();
+                cmd.CommandText = $"INSERT INTO user(userName,password,active,createDate,createdBy,lastUpdate,lastUpdateBy)VALUES('wgu','wgu', true, @date, 'system', @date, 'system')";
+                cmd.Parameters.AddWithValue("@date", DateTime.UtcNow);
+                cmd.ExecuteNonQuery();
+                mySqlConnection.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
+            finally
+            {
+                if(mySqlConnection.State == ConnectionState.Open)
+                {
+                    mySqlConnection.Close();
+                }
+            }
         }
 
         public User VerifyAndGetUser(string username, string password)
         {
-            mySqlConnection.Open();
             try
             {
+                mySqlConnection.Open();
                 User user = null;
                 string sql = $"SELECT * FROM user WHERE username = '{username}' AND password = '{password}'";
                 MySqlCommand cmd = new MySqlCommand(sql, mySqlConnection);
@@ -109,5 +131,7 @@ namespace JoelHunt.C969.PA.Repositories
                 mySqlConnection.Close();
             }
         }
+
+
     }
 }

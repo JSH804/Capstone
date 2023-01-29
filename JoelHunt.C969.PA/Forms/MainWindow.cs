@@ -13,6 +13,8 @@ using System.Resources;
 using JoelHunt.C969.PA.Services.ConfigurationService;
 using JoelHunt.C969.PA.Repositories;
 using JoelHunt.C969.PA.Models;
+using JoelHunt.C969.PA.Services;
+using JoelHunt.C969.PA.Forms.ViewModels;
 
 namespace JoelHunt.C969.PA.Forms
 {
@@ -22,14 +24,57 @@ namespace JoelHunt.C969.PA.Forms
         private Configurations configs;
         private Login login;
         private User activeUser;
+        private readonly IAppointmentService appointmentService;
 
         public MainWindow(RepoControl repo, Configurations configs, Login login, User user)
         {
             this.configs = configs;
             this.repo = repo;
+            this.appointmentService = repo.Appointments;
             this.login = login;
             this.activeUser = user;
             InitializeComponent();
+            CheckForAppointments();
+        }
+
+        private void CheckForAppointments()
+        {
+            List<AppointmentListReport> appointments = new List<AppointmentListReport>();
+
+            appointments = this.appointmentService.GetAppointmentListReport(activeUser.UserId);
+
+            TimeZoneInfo timeZoneInfo = TimeZoneInfo.Local;
+            DateTime currentTime = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, timeZoneInfo);
+
+            TimeSpan fifteenMinutes = new TimeSpan( 0, 15, 0);
+            List<AppointmentListReport> appsWithinFifteen = new List<AppointmentListReport>();
+
+            foreach(var time in appointments)
+            {
+                TimeSpan span = time.StartTime.Subtract(currentTime);
+                Console.WriteLine(span);
+            }
+
+            //
+            //Using a LINQ Lamba here to easily compare appointment dates and filter for appointments with 15 minutes of login
+            //I can resuse the same method to get appointments without creating a custom query in the database
+            //
+            appsWithinFifteen = appointments
+                .Where(a => a.StartTime.Subtract(currentTime) < fifteenMinutes && a.StartTime.Subtract(currentTime) > TimeSpan.Zero)
+                .ToList();
+
+            StringBuilder notification = new StringBuilder();
+            notification.Append($"You have {appsWithinFifteen.Count()} appointments within 15 minutes.");
+            notification.AppendLine();
+            foreach (var app in appsWithinFifteen)
+            {
+                if(appointments.Count > 0)
+                {
+                    notification.AppendLine($"Appointment with {app.CustomerName} starting at {app.StartTime.ToString("HH:mm")}");
+                }
+            }
+
+            MessageBox.Show(notification.ToString());
         }
 
         private ResourceManager ResourceManager { get; set; }

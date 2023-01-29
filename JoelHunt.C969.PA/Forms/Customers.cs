@@ -46,10 +46,23 @@ namespace JoelHunt.C969.PA.Forms
             this.customerDataGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         }
 
+        private void RefreshDataGrid()
+        {
+            this.customerDataGrid.DataSource = typeof(CustomerListModel);
+            GetListOfCustomers();
+            this.customerDataGrid.DataSource = this.customers;
+        }
+
+        private void RefreshAfterUpdate(object sender, EventArgs args)
+        {
+            RefreshDataGrid();
+        }
+
         private void addCustomerButton_Click(object sender, EventArgs e)
         {
             CreateCustomer create = new CreateCustomer(this.repo, this.activeUser);
             create.Show();
+            create.FormClosed += RefreshAfterUpdate;
         }
 
         private void editCustomerButton_Click(object sender, EventArgs e)
@@ -59,14 +72,25 @@ namespace JoelHunt.C969.PA.Forms
 
             EditCustomer editCustomerForm = new EditCustomer(this.repo, this.activeUser, customerId);
             editCustomerForm.Show();
-            editCustomerForm.FormClosed += RefreshList;
+            editCustomerForm.FormClosed += RefreshAfterUpdate;
         }
 
-        private void RefreshList(object sender, EventArgs args)
+        private void deleteButton_Click(object sender, EventArgs e)
         {
-            GetListOfCustomers();
-            customerDataGrid.DataSource = typeof(CustomerListModel);
-            customerDataGrid.DataSource = this.customers;
+            DataGridViewRow row = this.customerDataGrid.SelectedRows[0];
+            int customerId = Convert.ToInt32(row.Cells["customerId"].Value);
+
+            bool deleteSuccessful = this.customerService.DeleteAllCustomersRecords(customerId);
+
+            if (deleteSuccessful)
+            {
+                MessageBox.Show("Customer deleted successfully");
+                RefreshDataGrid();
+            }
+            else
+            {
+                MessageBox.Show("Error deleting the customer.");
+            }
         }
 
         private List<CustomerListModel> customers;

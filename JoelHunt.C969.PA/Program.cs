@@ -21,7 +21,6 @@ namespace JoelHunt.C969.PA
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Thread.CurrentThread.CurrentUICulture = new CultureInfo("ja-JP");
             Configurations configs = new Configurations();
             RepoControl repo = new RepoControl(configs);
             Application.Run(new Login(repo, configs));

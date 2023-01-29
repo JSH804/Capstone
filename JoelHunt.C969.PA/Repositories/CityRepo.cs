@@ -32,8 +32,6 @@ namespace JoelHunt.C969.PA.Repositories
                 cmd.Parameters.AddWithValue("@lastUpdate", DateTime.UtcNow);
                 cmd.Parameters.AddWithValue("@date", DateTime.UtcNow);
 
-                Console.WriteLine(cmd.CommandText);
-
                 cmd.ExecuteNonQuery();
 
                 return Convert.ToInt32(cmd.LastInsertedId);

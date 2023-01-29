@@ -33,7 +33,7 @@ namespace JoelHunt.C969.PA.Forms
 
         private void PopulateDropDowns()
         {
-            string[] typeArray = new[] { "Presentation", "Scrum", "Car Talk" };
+            string[] typeArray = new[] { "Presentation", "Scrum", "Hardware" };
             this.typeComboBox.DataSource = typeArray;
 
             this.yearArray = new int[100];
@@ -55,6 +55,9 @@ namespace JoelHunt.C969.PA.Forms
             int year = Convert.ToInt32(this.yearComboBox.Text);
 
             List<AppointmentListReport> apps = new List<AppointmentListReport>();
+
+            //using a LINQ Lambda here to filter the year, month, and type match the query
+            //useful so you do not need to query the database multiple times
 
             apps = this.appointments.Where(a => a.StartTime.Year == year && a.StartTime.Month == month && a.Type == type).ToList();
 

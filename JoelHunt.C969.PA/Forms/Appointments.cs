@@ -73,12 +73,14 @@ namespace JoelHunt.C969.PA.Forms
                 DateTime searchDate = this.searchCalender.SelectionStart;
                 DateTime startOfWeek = this.searchCalender.SelectionRange.Start = searchDate.StartOfWeek();
 
-                DateTime endOfWeek = searchDate.GetNextWeekday(DayOfWeek.Friday);
+                DateTime endOfWeek = searchDate.GetNextWeekday(DayOfWeek.Saturday);
 
                 this.searchCalender.SelectionRange.Start = startOfWeek;
                 this.searchCalender.SelectionRange.End = endOfWeek;
 
-                this.dataGridAppointments = this.appointments.Where(a => a.StartTime > startOfWeek && a.EndTime < endOfWeek.AddMilliseconds(86399999)).ToList();
+                //Using a LINQ lamba here to filter the appoints by week
+                //useful so you do not need to query the database multiple times
+                this.dataGridAppointments = this.appointments.Where(a => a.StartTime > startOfWeek && a.EndTime < endOfWeek.AddMilliseconds(86499999)).ToList();
                 this.appointmentDataGrid.DataSource = typeof(List<AppointmentListModel>);
                 this.appointmentDataGrid.DataSource = this.dataGridAppointments;
             }
@@ -86,8 +88,10 @@ namespace JoelHunt.C969.PA.Forms
             {
                 DateTime searchDate = this.searchCalender.SelectionStart;
                 DateTime startOfMonth = new DateTime(searchDate.Year, searchDate.Month, 1);
-                DateTime endOfMonth = startOfMonth.AddMonths(1).AddDays(-1).AddMilliseconds(86399999);
+                DateTime endOfMonth = startOfMonth.AddMonths(1).AddDays(-1).AddMilliseconds(86499999);
 
+                //Using a LINQ lamba here to filter the appoints by month
+                //useful so you do not need to query the database multiple times
                 this.dataGridAppointments = this.appointments.Where(a => a.StartTime >= startOfMonth && a.EndTime <= endOfMonth).ToList();
                 this.appointmentDataGrid.DataSource = typeof(List<AppointmentListModel>);
                 this.appointmentDataGrid.DataSource = this.dataGridAppointments;

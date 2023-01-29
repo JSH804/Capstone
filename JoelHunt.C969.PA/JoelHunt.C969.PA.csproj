@@ -174,6 +174,11 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Login.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Login.resx</DependentUpon>
+    </Compile>
     <Compile Include="Repositories\AddressRepo.cs" />
     <Compile Include="Repositories\AppointmentRepo.cs" />
     <Compile Include="Repositories\CityRepo.cs" />
@@ -182,6 +187,7 @@
     <Compile Include="Repositories\RepoControl.cs" />
     <Compile Include="Repositories\UserRepo.cs" />
     <Compile Include="Services\ConfigurationService\Configurations.cs" />
+    <Compile Include="Services\FileService\FileManager.cs" />
     <Compile Include="Services\IAddressService.cs" />
     <Compile Include="Services\IAppointmentService.cs" />
     <Compile Include="Services\ICityService.cs" />
@@ -209,6 +215,12 @@
     <EmbeddedResource Include="Forms\EditCustomer.resx">
       <DependentUpon>EditCustomer.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Login.en-US.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Login.es-MX.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
@@ -220,6 +232,13 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\UserTypeReport.resx">
       <DependentUpon>UserTypeReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Login.de-DE.resx" />
+    <EmbeddedResource Include="Properties\Login.en-Us.resx" />
+    <EmbeddedResource Include="Properties\Login.es-MX.resx" />
+    <EmbeddedResource Include="Properties\Login.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Login.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -245,7 +264,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Services\FileService\" />
+    <Folder Include="Languages\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

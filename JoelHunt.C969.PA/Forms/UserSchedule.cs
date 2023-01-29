@@ -59,7 +59,7 @@ namespace JoelHunt.C969.PA.Forms
             //
             //I'm using a LINQ lambda query here so I don't have to query the database everytime a user would like to find a new result
             //I can also get the count of the list easily to display and filter for future appointments
-            //LINQ also gives me to ability to orderby start times in ascending order
+            //LINQ lambda also gives me to ability to orderby start times in ascending order
             //
             apps = this.appointments.Where(a => a.StartTime >= currentDateTime && a.UserId == userId).OrderBy(a => a.StartTime).ToList();
             this.resultDataGrid.DataSource = apps;

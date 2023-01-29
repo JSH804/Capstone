@@ -36,7 +36,7 @@ namespace JoelHunt.C969.PA.Forms
             this.userComboBox.DisplayMember = "Name";
             this.userComboBox.ValueMember = "Id";
 
-            string[] typeArray = new[] { "Presentation", "Scrum", "Car Talk" };
+            string[] typeArray = new[] { "Presentation", "Scrum", "Hardware" };
 
             this.appComboBox.DataSource = typeArray;
         }

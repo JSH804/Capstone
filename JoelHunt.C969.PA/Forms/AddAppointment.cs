@@ -38,13 +38,13 @@ namespace JoelHunt.C969.PA.Forms
             this.startDatePicker.ShowUpDown = true;
             this.endDatePicker.ShowUpDown = true;
 
-            this.startDatePicker.CustomFormat = "hh:mm tt";
-            this.endDatePicker.CustomFormat = "hh:mm tt";
+            this.startDatePicker.CustomFormat = "HH:mm";
+            this.endDatePicker.CustomFormat = "HH:mm";
 
             this.startDatePicker.Format = DateTimePickerFormat.Custom;
             this.endDatePicker.Format = DateTimePickerFormat.Custom;
 
-            string[] typeArray = new[] { "Presentation", "Scrum", "Car Talk" };
+            string[] typeArray = new[] { "Presentation", "Scrum", "Hardware" };
 
             this.appTypeComboBox.DataSource = typeArray;
 
@@ -82,10 +82,20 @@ namespace JoelHunt.C969.PA.Forms
                 DateTime startTimeToSave = this.appCalendar.SelectionRange.Start.AddHours(startTime.Hour).AddMinutes(startTime.Minute);
                 DateTime endTimeToSave = this.appCalendar.SelectionRange.Start.AddHours(endTime.Hour).AddMinutes(endTime.Minute);
 
+                TimeZoneInfo timeInfo = TimeZoneInfo.Local;
+                DateTime currentTime = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, timeInfo);
+
+                if (startTimeToSave < currentTime)
+                {
+                    throw new ArgumentException("The appointment date cannot be in the past.");
+                }
+
                 if (this.startDatePicker.Value > this.endDatePicker.Value)
                 {
                     throw new ArgumentException("The end time cannot be before the start date!");
                 }
+
+
 
                 CheckIfInsideBusinessHours(startTime, endTime);
                 CheckForOverlaps(startTimeToSave, endTimeToSave);
@@ -128,7 +138,7 @@ namespace JoelHunt.C969.PA.Forms
             DateTime pmOutsideBusinessHoursEnd = new DateTime(startTime.Year, startTime.Month, startTime.Day, 17, 0, 0);
             if (!(amInsideBusinessHoursStart < startTime) || !(pmOutsideBusinessHoursEnd >= stopTime))
             {
-                throw new ArgumentException("This appointment is outside business hours. Please schedule between 8am and 5pm.");
+                throw new ArgumentException("This appointment is outside business hours. Please schedule between 08:00 and 17:00.");
             }
         }
 
@@ -143,25 +153,11 @@ namespace JoelHunt.C969.PA.Forms
 
                         if (app.Start <= end && start <= app.End)
                         {
-                            throw new ArgumentException($"The appointment window of {app.Start.ToString("MM/dd/yy hh:mm")} - {app.End.ToString("MM/dd/yy hh:mm")} is already booked for user: {this.userComboBox.Text}");
+                            throw new ArgumentException($"The appointment window of {app.Start.ToString("MM/dd/yy HH:mm")} - {app.End.ToString("MM/dd/yy HH:mm")} is already booked for user: {this.userComboBox.Text}");
                         }
                 }
             }
         }
 
-        private void customerComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void userComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void appTypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }

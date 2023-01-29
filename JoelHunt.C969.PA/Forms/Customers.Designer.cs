@@ -73,6 +73,7 @@ namespace JoelHunt.C969.PA.Forms
             this.deleteButton.TabIndex = 3;
             this.deleteButton.Text = "Delete";
             this.deleteButton.UseVisualStyleBackColor = true;
+            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
             // 
             // headerLabel
             // 
