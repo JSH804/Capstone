@@ -1,0 +1,79 @@
+﻿using MySql.Data;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Data;
+using JoelHunt.Capstone.Services.ConfigurationService;
+using MySql.Data.MySqlClient;
+
+namespace JoelHunt.Capstone.Repositories
+{
+    public class RepoControl : IDisposable
+    {
+        public RepoControl(Configurations configs)
+        {
+            InitDbConnection(configs);
+            CreateRepos();
+        }
+
+        ~RepoControl()
+        {
+            Dispose(false);
+        }
+
+        protected void InitDbConnection(Configurations configs)
+        {
+            this.mySqlConnection = new MySqlConnection(configs.SqlDBConnectionString);
+        }
+
+        private void CreateRepos()
+        {
+            this.Tutors = new TutorRepo(this.mySqlConnection);
+            this.Addresses = new AddressRepo(this.mySqlConnection);
+            this.Customers = new CustomerRepo(this.mySqlConnection);
+            this.Cities = new CityRepo(this.mySqlConnection);
+            this.Countries = new CountryRepo(this.mySqlConnection);
+            this.Appointments = new AppointmentRepo(this.mySqlConnection);
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if(!this.disposed)
+            {
+                if (disposing)
+                {
+                    CloseDbConnection();
+                }
+
+                disposed = true;
+            }
+
+        }
+
+        private void CloseDbConnection()
+        {
+            if(this.mySqlConnection.State == ConnectionState.Open)
+            {
+                this.mySqlConnection.Close();
+            }
+        }
+
+        public TutorRepo Tutors { get; private set; }
+        public CustomerRepo Customers { get; set; }
+        public AddressRepo Addresses { get; set; }
+        public CityRepo Cities { get; set; }
+        public CountryRepo Countries { get; set; }
+        public AppointmentRepo Appointments { get; set; }
+
+        private bool disposed = false;
+        private MySqlConnection mySqlConnection;
+    }
+}

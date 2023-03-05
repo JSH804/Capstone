@@ -1,0 +1,37 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace JoelHunt.Capstone.Helpers
+{
+    public static class DateTimeExtensions
+    {
+        public static DateTime StartOfWeek(this DateTime datetime)
+        {
+            return datetime.AddDays(-(int)datetime.DayOfWeek).Date;
+        }
+
+        public static DateTime GetNextWeekday(this DateTime datetime, DayOfWeek dayOfWeek)
+        {
+
+            if(datetime.DayOfWeek == dayOfWeek)
+            {
+                return datetime.Date;
+            };
+
+            DateTime nextday = datetime.AddDays(1);
+
+            int currentDay = (int)datetime.DayOfWeek;
+            int difference = (int)dayOfWeek - (int)currentDay;
+
+            if (difference <= 0)
+                nextday.AddDays(7);
+
+            while (nextday.DayOfWeek != dayOfWeek)
+                nextday = nextday.AddDays(1);
+            return nextday;
+        }
+    }
+}
